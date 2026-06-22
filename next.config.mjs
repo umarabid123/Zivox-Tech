@@ -6,7 +6,8 @@ const nextConfig = {
   // width="16"). These render correctly at runtime; we don't want strict
   // type/lint rules to block production builds of the ported markup.
   typescript: { ignoreBuildErrors: true },
-  eslint: { ignoreDuringBuilds: true },
+  // Note: Next.js 16 removed the `eslint` and `next lint` options; linting
+  // is now run via the ESLint CLI directly (see `npm run lint`).
 };
 
 export default nextConfig;

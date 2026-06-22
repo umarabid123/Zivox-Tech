@@ -78,8 +78,8 @@ export default function ContactSection() {
             <div className="field-row">
               <div className="field">
                 <label htmlFor="service">Service required <span className="req">*</span></label>
-                <select id="service" name="service" data-validate="required">
-                  <option defaultValue="">Select a service</option>
+                <select id="service" name="service" defaultValue="" data-validate="required">
+                  <option value="">Select a service</option>
                   <option>Web Development</option>
                   <option>Mobile App</option>
                   <option>AI Solution</option>
@@ -90,8 +90,8 @@ export default function ContactSection() {
               </div>
               <div className="field">
                 <label htmlFor="budget">Budget range</label>
-                <select id="budget" name="budget">
-                  <option defaultValue="">Not sure yet</option>
+                <select id="budget" name="budget" defaultValue="">
+                  <option value="">Not sure yet</option>
                   <option>Under $5k</option>
                   <option>$5k – $15k</option>
                   <option>$15k – $50k</option>

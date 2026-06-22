@@ -1,11 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
-import "../styles/site.css";
-import Navbar from "@/components/layout/Navbar";
-import MobileDrawer from "@/components/layout/MobileDrawer";
-import Footer from "@/components/layout/Footer";
-import Chatbot from "@/components/layout/Chatbot";
-import SiteInteractions from "@/components/SiteInteractions";
 
 export const metadata: Metadata = {
   title: {
@@ -35,14 +29,7 @@ export default function RootLayout({
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInit }} />
       </head>
-      <body>
-        <Navbar />
-        <MobileDrawer />
-        <main>{children}</main>
-        <Footer />
-        <Chatbot />
-        <SiteInteractions />
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

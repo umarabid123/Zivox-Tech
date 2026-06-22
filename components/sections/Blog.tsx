@@ -1,6 +1,36 @@
 import Link from "next/link";
+import { supabaseAnon } from "@/lib/supabase/server";
+import { formatDate, initials, avatarStyle } from "@/lib/formatters";
 
-export default function BlogSection() {
+type Post = {
+  id: string;
+  slug: string;
+  title: string;
+  excerpt: string | null;
+  category: string | null;
+  read_time: string | null;
+  author: string | null;
+  cover_image: string | null;
+  created_at: string;
+};
+
+async function getPosts(): Promise<Post[]> {
+  try {
+    const { data } = await supabaseAnon()
+      .from("blog_posts")
+      .select("id,slug,title,excerpt,category,read_time,author,cover_image,created_at")
+      .eq("published", true)
+      .order("created_at", { ascending: false })
+      .limit(60);
+    return (data ?? []) as Post[];
+  } catch {
+    return [];
+  }
+}
+
+export default async function BlogSection() {
+  const posts = await getPosts();
+
   return (
     <section className="page active" data-page="blog">
     <section className="page-header">
@@ -28,95 +58,47 @@ export default function BlogSection() {
         </div>
 
         <div className="blog-grid reveal-stagger">
-          <Link className="blog-card" href="/blog/rag-support" data-cats="ai">
-            <div className="blog-thumb"><div className="glyph blue">A</div></div>
-            <div className="blog-body">
-              <div className="blog-meta"><span className="cat">AI</span><span>May 18, 2026</span><span className="sep">·</span><span>8 min read</span></div>
-              <h3>Why most RAG chatbots fail in production (and how we make them not)</h3>
-              <p>Retrieval is the easy part. The hard parts: chunking, evaluation, and humility about what your bot doesn't know.</p>
-              <div className="blog-author"><div className="avatar" style={{ background: 'linear-gradient(135deg, #f59e0b, #b45309)' }}>LF</div><span>Léa Fournier</span></div>
-            </div>
-          </Link>
-
-          <Link className="blog-card" href="/blog/rag-support" data-cats="technology,web">
-            <div className="blog-thumb"><div className="glyph">N</div></div>
-            <div className="blog-body">
-              <div className="blog-meta"><span className="cat">Web</span><span>May 12, 2026</span><span className="sep">·</span><span>6 min read</span></div>
-              <h3>Next.js 14, two years in — what we changed our mind about</h3>
-              <p>App Router, server actions, edge runtimes. What we use in every project, and what we quietly avoid.</p>
-              <div className="blog-author"><div className="avatar" style={{ background: 'linear-gradient(135deg, #3B82F6, #1d4fb3)' }}>EM</div><span>Elias Marchetti</span></div>
-            </div>
-          </Link>
-
-          <Link className="blog-card" href="/blog/rag-support" data-cats="growth,startup">
-            <div className="blog-thumb"><div className="glyph alt">$</div></div>
-            <div className="blog-body">
-              <div className="blog-meta"><span className="cat">Growth</span><span>May 5, 2026</span><span className="sep">·</span><span>5 min read</span></div>
-              <h3>The case for charging $25k for a marketing site</h3>
-              <p>An honest look at the economics of premium agency work — for clients and for builders.</p>
-              <div className="blog-author"><div className="avatar" style={{ background: 'linear-gradient(135deg, #8b5cf6, #5b21b6)' }}>PN</div><span>Priya Narang</span></div>
-            </div>
-          </Link>
-
-          <Link className="blog-card" href="/blog/rag-support" data-cats="mobile">
-            <div className="blog-thumb"><div className="glyph blue">M</div></div>
-            <div className="blog-body">
-              <div className="blog-meta"><span className="cat">Mobile</span><span>Apr 28, 2026</span><span className="sep">·</span><span>9 min read</span></div>
-              <h3>React Native vs. Flutter in 2026 — a working decision matrix</h3>
-              <p>We've shipped 14 mobile apps in the last 3 years. Here's how we actually pick between them.</p>
-              <div className="blog-author"><div className="avatar" style={{ background: 'linear-gradient(135deg, #10b981, #047857)' }}>SO</div><span>Samuel Okonkwo</span></div>
-            </div>
-          </Link>
-
-          <Link className="blog-card" href="/blog/rag-support" data-cats="automation,technology">
-            <div className="blog-thumb"><div className="glyph">⌬</div></div>
-            <div className="blog-body">
-              <div className="blog-meta"><span className="cat">Automation</span><span>Apr 21, 2026</span><span className="sep">·</span><span>7 min read</span></div>
-              <h3>A field guide to internal automation projects</h3>
-              <p>From "this spreadsheet is killing me" to a real system in production — without over-engineering the journey.</p>
-              <div className="blog-author"><div className="avatar" style={{ background: 'linear-gradient(135deg, #3B82F6, #1d4fb3)' }}>EM</div><span>Elias Marchetti</span></div>
-            </div>
-          </Link>
-
-          <Link className="blog-card" href="/blog/rag-support" data-cats="startup,growth">
-            <div className="blog-thumb"><div className="glyph alt">▲</div></div>
-            <div className="blog-body">
-              <div className="blog-meta"><span className="cat">Startup</span><span>Apr 14, 2026</span><span className="sep">·</span><span>4 min read</span></div>
-              <h3>What we learned shipping 120 products in 4 years</h3>
-              <p>The patterns that recur, the mistakes that compound, and the few decisions that always matter.</p>
-              <div className="blog-author"><div className="avatar" style={{ background: 'linear-gradient(135deg, #8b5cf6, #5b21b6)' }}>PN</div><span>Priya Narang</span></div>
-            </div>
-          </Link>
-
-          <Link className="blog-card" href="/blog/rag-support" data-cats="technology,web">
-            <div className="blog-thumb"><div className="glyph blue">T</div></div>
-            <div className="blog-body">
-              <div className="blog-meta"><span className="cat">Technology</span><span>Apr 7, 2026</span><span className="sep">·</span><span>10 min read</span></div>
-              <h3>Type safety end-to-end — Prisma, tRPC, and what they buy you</h3>
-              <p>A practical walkthrough of getting types to flow from your DB schema all the way to your React components.</p>
-              <div className="blog-author"><div className="avatar" style={{ background: 'linear-gradient(135deg, #3B82F6, #1d4fb3)' }}>EM</div><span>Elias Marchetti</span></div>
-            </div>
-          </Link>
-
-          <Link className="blog-card" href="/blog/rag-support" data-cats="ai">
-            <div className="blog-thumb"><div className="glyph">★</div></div>
-            <div className="blog-body">
-              <div className="blog-meta"><span className="cat">AI</span><span>Mar 30, 2026</span><span className="sep">·</span><span>6 min read</span></div>
-              <h3>Evals are the new tests — a primer for product teams</h3>
-              <p>How we set up evaluation suites for AI features, and why "vibes-based" QA breaks at the worst possible time.</p>
-              <div className="blog-author"><div className="avatar" style={{ background: 'linear-gradient(135deg, #f59e0b, #b45309)' }}>LF</div><span>Léa Fournier</span></div>
-            </div>
-          </Link>
-
-          <Link className="blog-card" href="/blog/rag-support" data-cats="mobile,technology">
-            <div className="blog-thumb"><div className="glyph alt">○</div></div>
-            <div className="blog-body">
-              <div className="blog-meta"><span className="cat">Mobile</span><span>Mar 24, 2026</span><span className="sep">·</span><span>8 min read</span></div>
-              <h3>Offline-first done right — patterns from the trenches</h3>
-              <p>Local DBs, conflict resolution, and the UX of "you'll see this later". Real patterns, real code.</p>
-              <div className="blog-author"><div className="avatar" style={{ background: 'linear-gradient(135deg, #10b981, #047857)' }}>SO</div><span>Samuel Okonkwo</span></div>
-            </div>
-          </Link>
+          {posts.length > 0 ? (
+            posts.map((p) => {
+              const cat = (p.category || "").toLowerCase();
+              const author = p.author || "Nexvora Team";
+              return (
+                <Link key={p.id} className="blog-card" href={`/blog/${p.slug}`} data-cats={cat}>
+                  <div className="blog-thumb">
+                    {p.cover_image ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={p.cover_image} alt={p.title} />
+                    ) : (
+                      <div className="glyph">{(p.title || "·")[0]?.toUpperCase()}</div>
+                    )}
+                  </div>
+                  <div className="blog-body">
+                    <div className="blog-meta">
+                      <span className="cat">{p.category || "Post"}</span>
+                      <span>{formatDate(p.created_at)}</span>
+                      {p.read_time && <><span className="sep">·</span><span>{p.read_time}</span></>}
+                    </div>
+                    <h3>{p.title}</h3>
+                    {p.excerpt && <p>{p.excerpt}</p>}
+                    <div className="blog-author">
+                      <div className="avatar" style={avatarStyle(author)}>{initials(author)}</div>
+                      <span>{author}</span>
+                    </div>
+                  </div>
+                </Link>
+              );
+            })
+          ) : (
+            <Link className="blog-card" href="/blog/rag-support" data-cats="ai">
+              <div className="blog-thumb"><div className="glyph blue">A</div></div>
+              <div className="blog-body">
+                <div className="blog-meta"><span className="cat">AI</span><span>May 18, 2026</span><span className="sep">·</span><span>8 min read</span></div>
+                <h3>Why most RAG chatbots fail in production (and how we make them not)</h3>
+                <p>Retrieval is the easy part. The hard parts: chunking, evaluation, and humility about what your bot doesn't know.</p>
+                <div className="blog-author"><div className="avatar" style={{ background: 'linear-gradient(135deg, #f59e0b, #b45309)' }}>LF</div><span>Léa Fournier</span></div>
+              </div>
+            </Link>
+          )}
         </div>
       </div>
     </section>

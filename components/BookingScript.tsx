@@ -7,7 +7,8 @@ export default function BookingScript() {
   useEffect(() => {
     const MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
     const SLOTS = ["09:00","09:30","10:00","10:30","11:00","13:00","13:30","14:00","14:30","15:00","15:30","16:00"];
-    const state = { year: 2026, month: 4, day: null as number | null, slot: null as string | null };
+    const now = new Date();
+    const state = { year: now.getFullYear(), month: now.getMonth(), day: null as number | null, slot: null as string | null };
 
     const $month = document.getElementById("calMonth");
     const $days = document.getElementById("calDays");
@@ -57,7 +58,8 @@ export default function BookingScript() {
         d.textContent = String(prevMonthDays - i);
         $days!.appendChild(d);
       }
-      const today = new Date("2026-05-23");
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
       for (let i = 1; i <= daysInMonth; i++) {
         const btn = document.createElement("button");
         const date = new Date(state.year, state.month, i);
@@ -122,7 +124,7 @@ export default function BookingScript() {
     back?.addEventListener("click", onBack);
 
     const bookForm = document.getElementById("bookForm") as HTMLFormElement | null;
-    const onBookSubmit = (e: Event) => {
+    const onBookSubmit = async (e: Event) => {
       e.preventDefault();
       let valid = true;
       bookForm!.querySelectorAll("[data-validate]").forEach((f) => {
@@ -137,9 +139,29 @@ export default function BookingScript() {
       });
       if (!valid) return;
       const btn = bookForm!.querySelector(".form-submit") as HTMLButtonElement;
+      const originalHtml = btn.innerHTML;
       btn.innerHTML = '<span class="spinner"></span> Confirming...';
       btn.disabled = true;
-      setTimeout(() => {
+      try {
+        const fd = new FormData(bookForm!);
+        const payload = {
+          name: String(fd.get("name") || ""),
+          email: String(fd.get("email") || ""),
+          phone: String(fd.get("phone") || ""),
+          company: String(fd.get("company") || ""),
+          notes: String(fd.get("notes") || fd.get("details") || ""),
+          meeting_date: MONTHS[state.month] + " " + state.day + ", " + state.year,
+          meeting_time: state.slot || "",
+        };
+        const res = await fetch("/api/booking", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok || !data.ok) {
+          throw new Error(data.error || "Booking failed");
+        }
         const cw = document.getElementById("confirmWhen");
         if (cw) cw.textContent = state.slot + " · " + MONTHS[state.month] + " " + state.day + ", " + state.year;
         const ds = document.getElementById("detailsStep");
@@ -147,7 +169,11 @@ export default function BookingScript() {
         if (ds) ds.style.display = "none";
         if (cs) cs.style.display = "block";
         window.scrollTo({ top: 100, behavior: "smooth" });
-      }, 1000);
+      } catch (err: any) {
+        btn.innerHTML = originalHtml;
+        btn.disabled = false;
+        alert(err?.message || "Could not confirm your booking. Please try again.");
+      }
     };
     bookForm?.addEventListener("submit", onBookSubmit);
 

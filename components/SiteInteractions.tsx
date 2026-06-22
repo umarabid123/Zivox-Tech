@@ -443,7 +443,7 @@ export default function SiteInteractions() {
       wrap?.classList.toggle("error", !ok);
       return ok;
     };
-    const onSubmit = (e: Event) => {
+    const onSubmit = async (e: Event) => {
       e.preventDefault();
       let valid = true;
       form!.querySelectorAll("[data-validate]").forEach((f) => {
@@ -454,15 +454,37 @@ export default function SiteInteractions() {
       const original = btn.innerHTML;
       btn.innerHTML = '<span class="spinner"></span> Sending...';
       btn.disabled = true;
-      setTimeout(() => {
-        btn.innerHTML = original;
-        btn.disabled = false;
+      try {
+        const fd = new FormData(form!);
+        const payload = {
+          name: String(fd.get("name") || ""),
+          email: String(fd.get("email") || ""),
+          phone: String(fd.get("phone") || ""),
+          company: String(fd.get("company") || ""),
+          service: String(fd.get("service") || ""),
+          budget: String(fd.get("budget") || ""),
+          details: String(fd.get("details") || ""),
+        };
+        const res = await fetch("/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok || !data.ok) {
+          throw new Error(data.error || "Submission failed");
+        }
         form!.reset();
         const ok = document.querySelector(".form-success");
         ok?.classList.add("show");
         setTimeout(() => ok?.classList.remove("show"), 5000);
         toast("Thanks — we'll be in touch within 24 hours.");
-      }, 1100);
+      } catch (err: any) {
+        toast(err?.message || "Could not send message. Please try again.", "error");
+      } finally {
+        btn.innerHTML = original;
+        btn.disabled = false;
+      }
     };
     const blurFns: Array<[Element, string, EventListener]> = [];
     if (form) {

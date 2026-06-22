@@ -1,0 +1,333 @@
+/* =========================================================
+   Admin panel styles.
+   Scoped via .nx-admin-root so they cannot affect the public site.
+   ========================================================= */
+
+.nx-admin-root,
+.nx-admin-root * {
+  box-sizing: border-box;
+}
+
+.nx-admin-root {
+  --a-bg: #0b0c0f;
+  --a-panel: #14161b;
+  --a-border: #23262d;
+  --a-text: #e8eaee;
+  --a-muted: #8a8f9b;
+  --a-accent: #7c5cff;
+  --a-accent-2: #5a3df0;
+  --a-danger: #ef4444;
+  --a-ok: #22c55e;
+
+  min-height: 100vh;
+  background: var(--a-bg);
+  color: var(--a-text);
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.nx-admin-root .a-shell {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  min-height: 100vh;
+}
+
+.nx-admin-root .a-side {
+  background: #0f1116;
+  border-right: 1px solid var(--a-border);
+  padding: 20px 14px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: auto;
+}
+
+.nx-admin-root .a-brand {
+  font-weight: 700;
+  font-size: 16px;
+  padding: 6px 10px 18px;
+  letter-spacing: -0.01em;
+}
+
+.nx-admin-root .a-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.nx-admin-root .a-nav a {
+  color: var(--a-muted);
+  text-decoration: none;
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nx-admin-root .a-nav a:hover {
+  background: #181b22;
+  color: var(--a-text);
+}
+
+.nx-admin-root .a-nav a.active {
+  background: #1c1f27;
+  color: #fff;
+}
+
+.nx-admin-root .a-main {
+  padding: 28px 32px;
+  min-width: 0;
+}
+
+.nx-admin-root .a-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--a-border);
+}
+
+.nx-admin-root h1.a-h1 {
+  font-size: 22px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.nx-admin-root .a-card {
+  background: var(--a-panel);
+  border: 1px solid var(--a-border);
+  border-radius: 10px;
+  padding: 18px 20px;
+}
+
+.nx-admin-root .a-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+}
+
+.nx-admin-root .a-stat .l {
+  color: var(--a-muted);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.nx-admin-root .a-stat .v {
+  font-size: 28px;
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+.nx-admin-root table.a-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.nx-admin-root .a-table th,
+.nx-admin-root .a-table td {
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--a-border);
+  vertical-align: top;
+}
+
+.nx-admin-root .a-table th {
+  font-weight: 500;
+  color: var(--a-muted);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.nx-admin-root .a-table tr:hover td {
+  background: #161922;
+}
+
+.nx-admin-root .a-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--a-accent);
+  color: #fff;
+  border: 0;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.nx-admin-root .a-btn:hover {
+  background: var(--a-accent-2);
+}
+
+.nx-admin-root .a-btn.secondary {
+  background: transparent;
+  border: 1px solid var(--a-border);
+  color: var(--a-text);
+}
+
+.nx-admin-root .a-btn.danger {
+  background: var(--a-danger);
+}
+
+.nx-admin-root .a-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.nx-admin-root .a-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.nx-admin-root .a-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 760px;
+}
+
+.nx-admin-root .a-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.nx-admin-root .a-field label {
+  font-size: 12px;
+  color: var(--a-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.nx-admin-root .a-field input,
+.nx-admin-root .a-field textarea,
+.nx-admin-root .a-field select {
+  background: #0f1116;
+  color: var(--a-text);
+  border: 1px solid var(--a-border);
+  border-radius: 6px;
+  padding: 9px 12px;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.nx-admin-root .a-field textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.nx-admin-root .a-field input:focus,
+.nx-admin-root .a-field textarea:focus,
+.nx-admin-root .a-field select:focus {
+  outline: 2px solid var(--a-accent);
+  outline-offset: -1px;
+  border-color: transparent;
+}
+
+.nx-admin-root .a-field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.nx-admin-root .a-msg {
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+}
+
+.nx-admin-root .a-msg.err {
+  background: rgba(239, 68, 68, 0.12);
+  color: #fda4a4;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.nx-admin-root .a-msg.ok {
+  background: rgba(34, 197, 94, 0.12);
+  color: #86efac;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+/* ------------ Login page ------------ */
+.nx-admin-root .a-login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 24px;
+}
+
+.nx-admin-root .a-login-card {
+  background: var(--a-panel);
+  border: 1px solid var(--a-border);
+  border-radius: 12px;
+  padding: 32px;
+  width: 100%;
+  max-width: 380px;
+}
+
+.nx-admin-root .a-login-card h1 {
+  margin: 0 0 6px;
+  font-size: 22px;
+}
+
+.nx-admin-root .a-login-card .sub {
+  color: var(--a-muted);
+  font-size: 13px;
+  margin-bottom: 22px;
+}
+
+.nx-admin-root .a-pill {
+  display: inline-block;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.nx-admin-root .a-pill.new {
+  background: rgba(124, 92, 255, 0.15);
+  color: #b9a4ff;
+}
+
+.nx-admin-root .a-pill.read {
+  background: #1c1f27;
+  color: var(--a-muted);
+}
+
+.nx-admin-root .a-pill.live {
+  background: rgba(34, 197, 94, 0.15);
+  color: #86efac;
+}
+
+.nx-admin-root .a-pill.draft {
+  background: rgba(245, 158, 11, 0.15);
+  color: #fcd34d;
+}
+
+@media (max-width: 880px) {
+  .nx-admin-root .a-shell {
+    grid-template-columns: 1fr;
+  }
+  .nx-admin-root .a-side {
+    position: static;
+    height: auto;
+  }
+  .nx-admin-root .a-main {
+    padding: 20px 16px;
+  }
+  .nx-admin-root .a-field-row {
+    grid-template-columns: 1fr;
+  }
+}
