@@ -517,7 +517,7 @@
 * { box-sizing: border-box; }
 *::selection { background: var(--accent); color: white; }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: clip; }
 body {
   margin: 0;
   background: var(--bg);
@@ -637,8 +637,8 @@ h3 { font-size: clamp(20px, 2vw, 24px); letter-spacing: -0.02em; line-height: 1.
   line-height: 1.55;
 }
 
-.section { padding: clamp(80px, 10vw, 140px) 0; }
-.section-header { margin-bottom: 56px; }
+.section { padding: clamp(60px, 8vw, 100px) 0; }
+.section-header { margin-bottom: 48px; }
 
 /* ===== Buttons ===== */
 .btn {
@@ -768,7 +768,7 @@ h3 { font-size: clamp(20px, 2vw, 24px); letter-spacing: -0.02em; line-height: 1.
    Page header (sub-page hero)
    ============================================ */
 .page-header {
-  padding: clamp(140px, 18vw, 180px) 0 clamp(60px, 8vw, 100px);
+  padding: clamp(120px, 15vw, 150px) 0 clamp(48px, 6vw, 72px);
   text-align: center;
   border-bottom: 1px solid var(--border-2);
   position: relative;
@@ -789,15 +789,26 @@ h3 { font-size: clamp(20px, 2vw, 24px); letter-spacing: -0.02em; line-height: 1.
   line-height: 1.55;
 }
 .page-header .breadcrumb {
+  position: absolute;
+  top: clamp(96px, 12vw, 120px);
+  right: clamp(20px, 5vw, 56px);
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 22px;
+  margin-bottom: 0;
   font-size: 13px;
   color: var(--text-3);
+  z-index: 2;
 }
 .page-header .breadcrumb a:hover { color: var(--text-2); }
 .page-header .breadcrumb .sep { opacity: 0.4; }
+@media (max-width: 640px) {
+  .page-header .breadcrumb {
+    position: static;
+    justify-content: center;
+    margin: 0 auto 20px;
+  }
+}
 .page-header-actions {
   margin-top: 32px;
   display: inline-flex; gap: 12px; flex-wrap: wrap;
@@ -859,6 +870,7 @@ h3 { font-size: clamp(20px, 2vw, 24px); letter-spacing: -0.02em; line-height: 1.
 .hero {
   padding: clamp(120px, 16vw, 160px) 0 clamp(80px, 10vw, 120px);
   position: relative;
+  overflow: hidden; /* clip decorative aurora bleed so it never widens the page */
 }
 .hero-grid {
   display: grid;
@@ -866,7 +878,92 @@ h3 { font-size: clamp(20px, 2vw, 24px); letter-spacing: -0.02em; line-height: 1.
   gap: clamp(40px, 6vw, 80px);
   align-items: center;
 }
+/* Centered single-column hero (no right-side visual) */
+.hero-grid--centered {
+  grid-template-columns: 1fr;
+  justify-items: center;
+  text-align: center;
+}
+.hero-grid--centered .hero-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 760px;
+}
+.hero-grid--centered h1 {
+  font-size: clamp(40px, 6.5vw, 76px);
+}
+.hero-grid--centered p.lead {
+  max-width: 600px;
+}
+.hero-grid--centered .hero-ctas {
+  justify-content: center;
+}
+.hero-grid--centered .hero-stats {
+  max-width: 600px;
+  width: 100%;
+  justify-items: center;
+  text-align: center;
+}
 .hero h1 { margin-top: 22px; }
+
+/* ============================================
+   BIG BRAND-NAME CAROUSEL (hero background layer)
+   ============================================ */
+/* override the generic ".hero > *" rule so this stays a pure background layer
+   (absolute, behind content) instead of taking up flow space */
+.hero > .brand-carousel {
+  position: absolute;
+  top: 50%;
+  left: -15%;
+  width: 130%;               /* wider so the rotated band still covers the hero */
+  transform: translateY(-50%) rotate(-25deg);  /* diagonal background text */
+  overflow: hidden;
+  z-index: 0;                 /* sit behind hero content (which is z-index:1) */
+  pointer-events: none;
+  opacity: 0.10;             /* subtle ghost text in the background */
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+[data-theme="light"] .hero > .brand-carousel { opacity: 0.07; }
+.brand-carousel-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  gap: clamp(24px, 4vw, 56px);
+  animation: brandScroll 40s linear infinite;
+  will-change: transform;
+}
+.bc-word {
+  font-family: "Inter", system-ui, sans-serif;
+  font-weight: 800;
+  font-size: clamp(64px, 13vw, 180px);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+  color: var(--text);
+  flex-shrink: 0;
+}
+/* outline (stroke-only) variant for the editorial mix */
+.bc-word--outline {
+  color: transparent;
+  -webkit-text-stroke: 2px var(--text);
+  text-stroke: 2px var(--text);
+}
+.bc-star {
+  font-size: clamp(32px, 5vw, 72px);
+  color: var(--accent);
+  flex-shrink: 0;
+  transform: translateY(-0.08em);
+}
+@keyframes brandScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .brand-carousel-track { animation: none; }
+}
+
 .hero p.lead {
   margin-top: 24px;
   font-size: 18px;
@@ -1255,6 +1352,9 @@ h3 { font-size: clamp(20px, 2vw, 24px); letter-spacing: -0.02em; line-height: 1.
   gap: clamp(40px, 6vw, 80px);
   align-items: center;
 }
+/* let grid items shrink below their content's intrinsic width so the
+   code block scrolls internally instead of widening the page */
+.why-grid > * { min-width: 0; }
 .feature-list { display: grid; gap: 22px; margin-top: 36px; }
 .feature {
   display: grid;
@@ -1832,6 +1932,7 @@ footer .container { position: relative; z-index: 1; }
 }
 .newsletter input {
   flex: 1;
+  min-width: 0; /* allow input to shrink so the button never gets clipped */
   padding: 13px 16px;
   background: transparent;
   border: 0;
@@ -1853,6 +1954,8 @@ footer .container { position: relative; z-index: 1; }
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  flex-shrink: 0; /* keep the Subscribe button fully visible */
+  white-space: nowrap;
 }
 .newsletter button:hover { background: #4f8ff7; }
 [data-theme="light"] .newsletter button:hover { background: #1e40af; }
@@ -2572,6 +2675,7 @@ footer .container { position: relative; z-index: 1; }
   border-bottom: 1px solid var(--border-2);
   align-items: center;
 }
+.case-row > * { min-width: 0; }
 .case-row.reverse > div:first-child { order: 2; }
 @media (max-width: 900px) {
   .case-row { grid-template-columns: 1fr; }
@@ -2837,7 +2941,7 @@ footer .container { position: relative; z-index: 1; }
 .hero-aurora {
   position: absolute;
   top: -10%; left: 50%;
-  width: 1200px;
+  width: min(1200px, 140vw);
   height: 600px;
   transform: translateX(-50%);
   background:
@@ -2997,6 +3101,31 @@ footer .container { position: relative; z-index: 1; }
 }
 
 [data-theme="light"] .chatbot-btn { box-shadow: 0 14px 30px -10px rgba(37,99,235,0.4); }
+
+/* ---- Light-theme color fixes: hardcoded dark-mode values that broke in light mode ---- */
+/* Text that was light-gray (invisible on light surfaces) → theme-aware text token */
+[data-theme="light"] .quote { color: var(--text); }
+[data-theme="light"] .msg.bot { color: var(--text); }
+[data-theme="light"] .article-body { color: var(--text-2); }
+[data-theme="light"] .article-body blockquote { color: var(--text); }
+[data-theme="light"] .article-body code { color: var(--text); }
+[data-theme="light"] .legal { color: var(--text); }
+
+/* Bright neon-green success text → proper success green with contrast on light tint */
+[data-theme="light"] .form-success { color: #059669; }
+[data-theme="light"] .confirm-card .check-big { color: #059669; }
+
+/* Hardcoded bright-blue hover backgrounds → darker accent so white label stays readable */
+[data-theme="light"] .btn-primary:hover { background: var(--accent-2); }
+[data-theme="light"] .chat-send:hover { background: var(--accent-2); }
+
+/* Dark dots / scrollbar that vanished on light surfaces */
+[data-theme="light"] .code-head .traffic span { background: #C8C8CD; }
+[data-theme="light"] .chat-body { scrollbar-color: var(--border) transparent; }
+[data-theme="light"] .chat-body::-webkit-scrollbar-thumb { background: var(--border); }
+
+/* Chart end-dot was fill:white → keep a light fill with the blue ring (use card surface) */
+[data-theme="light"] .chart-dot { fill: var(--card); }
 
 /* Hero stat counter wrap */
 .hero-stats > div:hover .stat-num {

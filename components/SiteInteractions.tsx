@@ -149,11 +149,11 @@ export default function SiteInteractions() {
         chips: [],
       },
       contact: {
-        text: "You can reach us at <b>hello@nexvora.tech</b> or use the contact form on this page. We respond within 24 hours.",
+        text: "You can reach us at <b>hello@zivox.tech</b> or use the contact form on this page. We respond within 24 hours.",
         chips: ["Open form", "Book consultation"],
       },
       hello: {
-        text: "Hi there — I'm Nova, Nexvora's assistant. What can I help with today?",
+        text: "Hi there — I'm Nova, Zivox's assistant. What can I help with today?",
         chips: ["Pricing", "Services", "Timeline", "Book consultation"],
       },
     };
@@ -242,7 +242,7 @@ export default function SiteInteractions() {
     chatForm?.addEventListener("submit", onChatSubmit);
     const chatInit = setTimeout(() => {
       if (chatBody && !chatBody.children.length) {
-        addMsg("👋 Hi — I'm <b>Nova</b>, Nexvora's AI assistant. What brings you here today?", "bot", ["Pricing", "Services", "Book consultation"]);
+        addMsg("👋 Hi — I'm <b>Nova</b>, Zivox's AI assistant. What brings you here today?", "bot", ["Pricing", "Services", "Book consultation"]);
       }
     }, 200);
 

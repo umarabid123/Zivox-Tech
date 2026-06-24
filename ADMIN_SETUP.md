@@ -1,4 +1,4 @@
-# Nexvora Tech — Admin Panel Setup
+# Zivox Tech — Admin Panel Setup
 
 This project has been upgraded from a static marketing site to a **dynamic Next.js 16 app** with a self-hosted admin panel, Supabase backend, and SMTP email notifications.
 

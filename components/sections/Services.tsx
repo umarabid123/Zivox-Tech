@@ -11,7 +11,6 @@ export default function ServicesSection() {
           <span className="sep">/</span>
           <span>Services</span>
         </div>
-        <span className="eyebrow"><span className="dot"></span> 4 core services · 1 senior team</span>
         <h1>What we <span className="serif-italic">build.</span></h1>
         <p className="lead">From a marketing site to a production AI assistant, we cover the full surface area of modern software. Pick what you need below.</p>
       </div>

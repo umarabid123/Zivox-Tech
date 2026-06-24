@@ -8,7 +8,6 @@ export default function BookSection() {
         <div className="breadcrumb">
           <Link href="/">Home</Link><span className="sep">/</span><span>Book Consultation</span>
         </div>
-        <span className="eyebrow"><span className="dot"></span> Free · 30 min · senior team</span>
         <h1>Book a <span className="serif-italic">consultation.</span></h1>
         <p className="lead">Pick a time that works. You'll get an honest 30 minutes with a senior person — no sales pitches.</p>
       </div>

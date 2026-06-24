@@ -8,7 +8,6 @@ export default function CaseStudiesSection() {
         <div className="breadcrumb">
           <Link href="/">Home</Link><span className="sep">/</span><span>Case Studies</span>
         </div>
-        <span className="eyebrow"><span className="dot"></span> 3 in-depth write-ups</span>
         <h1>Case <span className="serif-italic">studies.</span></h1>
         <p className="lead">A closer look at three recent client engagements — what they came to us with, what we built, what changed afterwards.</p>
       </div>

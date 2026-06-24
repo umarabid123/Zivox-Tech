@@ -1,5 +1,5 @@
 -- =========================================================
--- Nexvora Tech — Supabase schema
+-- Zivox Tech — Supabase schema
 -- Run this in Supabase SQL Editor (one-time setup).
 -- =========================================================
 
@@ -16,7 +16,7 @@ create table if not exists public.blog_posts (
   cover_image  text,
   category     text,
   read_time    text,
-  author       text default 'Nexvora Team',
+  author       text default 'Zivox Team',
   published    boolean not null default true,
   created_at   timestamptz not null default now(),
   updated_at   timestamptz not null default now()

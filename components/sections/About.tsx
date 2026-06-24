@@ -11,9 +11,8 @@ export default function AboutSection() {
           <span className="sep">/</span>
           <span>About</span>
         </div>
-        <span className="eyebrow"><span className="dot"></span> Est. 2021 · Remote-first</span>
         <h1>Software built by <span className="serif-italic">people</span> who care.</h1>
-        <p className="lead">Nexvora is a small, senior team of designers and engineers helping ambitious teams turn ideas into production-grade software — fast, calmly, and without the usual agency noise.</p>
+        <p className="lead">Zivox is a small, senior team of designers and engineers helping ambitious teams turn ideas into production-grade software — fast, calmly, and without the usual agency noise.</p>
       </div>
     </section>
 
@@ -51,7 +50,7 @@ export default function AboutSection() {
           </div>
           <div className="reveal" style={{ transitionDelay: '.1s' }}>
             <p style={{ fontSize: '17px', color: 'var(--text-2)', lineHeight: '1.7', margin: '0 0 18px' }}>
-              We started Nexvora in 2021 after years of watching agencies over-promise, drag timelines, and hand off products that nobody on the client side could maintain.
+              We started Zivox in 2021 after years of watching agencies over-promise, drag timelines, and hand off products that nobody on the client side could maintain.
             </p>
             <p style={{ fontSize: '17px', color: 'var(--text-2)', lineHeight: '1.7', margin: '0 0 18px' }}>
               We wanted to build the opposite — a small team of senior people who design and ship things end-to-end, communicate honestly, and treat every codebase like we'll inherit it ourselves.
@@ -143,7 +142,7 @@ export default function AboutSection() {
         <div className="timeline reveal-stagger">
           <div className="timeline-item">
             <div className="timeline-year">2021 · Q3</div>
-            <h4>Nexvora is born</h4>
+            <h4>Zivox is born</h4>
             <p>Elias and Priya leave their day jobs and take on the first three clients out of a co-working space in Lisbon.</p>
           </div>
           <div className="timeline-item">

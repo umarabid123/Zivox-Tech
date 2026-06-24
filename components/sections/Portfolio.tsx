@@ -37,7 +37,6 @@ export default async function PortfolioSection() {
         <div className="breadcrumb">
           <Link href="/">Home</Link><span className="sep">/</span><span>Portfolio</span>
         </div>
-        <span className="eyebrow"><span className="dot"></span> 120+ shipped · last 4 years</span>
         <h1>Recent <span className="serif-italic">work.</span></h1>
         <p className="lead">A small selection of products we've designed and built end-to-end. Filter by category, click for details.</p>
       </div>

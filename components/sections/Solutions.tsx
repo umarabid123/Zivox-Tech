@@ -8,7 +8,6 @@ export default function SolutionsSection() {
         <div className="breadcrumb">
           <Link href="/">Home</Link><span className="sep">/</span><span>Solutions</span>
         </div>
-        <span className="eyebrow"><span className="dot"></span> 6 industries · proven patterns</span>
         <h1>Solutions, <span className="serif-italic">built to fit.</span></h1>
         <p className="lead">Reusable patterns we've shipped across industries — adapted to your stack, branding and workflows.</p>
       </div>

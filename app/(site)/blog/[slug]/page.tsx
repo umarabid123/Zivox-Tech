@@ -23,9 +23,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const post = await getPost(slug);
-  if (!post) return { title: "Post not found — Nexvora" };
+  if (!post) return { title: "Post not found — Zivox" };
   return {
-    title: `${post.title} — Nexvora`,
+    title: `${post.title} — Zivox`,
     description: post.excerpt || undefined,
   };
 }
@@ -41,7 +41,7 @@ export default async function BlogPostPage({
   const post = await getPost(slug);
   if (!post) notFound();
 
-  const author = post.author || "Nexvora Team";
+  const author = post.author || "Zivox Team";
 
   return (
     <section className="page active" data-page="blog">

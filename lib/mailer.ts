@@ -37,7 +37,7 @@ function box(title: string, rows: Array<[string, string]>): string {
     <table style="border-collapse:collapse;width:100%;border:1px solid #eee;border-radius:8px;overflow:hidden">
       ${trs}
     </table>
-    <p style="color:#999;font-size:12px;margin-top:16px">Sent automatically from nexvora.tech</p>
+    <p style="color:#999;font-size:12px;margin-top:16px">Sent automatically from zivox.tech</p>
   </div>`;
 }
 

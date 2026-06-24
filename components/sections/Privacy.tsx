@@ -57,7 +57,7 @@ export default function PrivacySection() {
           <li>Object to specific uses.</li>
           <li>Receive a portable copy.</li>
         </ul>
-        <p>Just email us at <a href="mailto:privacy@nexvora.tech" style={{ color: 'var(--accent-2)' }}>privacy@nexvora.tech</a>. We'll respond within 30 days, usually much sooner.</p>
+        <p>Just email us at <a href="mailto:privacy@zivox.tech" style={{ color: 'var(--accent-2)' }}>privacy@zivox.tech</a>. We'll respond within 30 days, usually much sooner.</p>
 
         <h2>6. Children</h2>
         <p>Our services aren't directed at children under 16, and we don't knowingly collect their data.</p>
@@ -69,7 +69,7 @@ export default function PrivacySection() {
         <p>If we update this policy, we'll update the date at the top and — for material changes — notify newsletter subscribers and anyone with an active project.</p>
 
         <h2>9. Contact</h2>
-        <p>Questions? Concerns? Bug us at <a href="mailto:privacy@nexvora.tech" style={{ color: 'var(--accent-2)' }}>privacy@nexvora.tech</a> or via our <Link href="/contact" style={{ color: 'var(--accent-2)' }}>contact form</Link>. We read everything.</p>
+        <p>Questions? Concerns? Bug us at <a href="mailto:privacy@zivox.tech" style={{ color: 'var(--accent-2)' }}>privacy@zivox.tech</a> or via our <Link href="/contact" style={{ color: 'var(--accent-2)' }}>contact form</Link>. We read everything.</p>
       </div>
     </div>
     </section>

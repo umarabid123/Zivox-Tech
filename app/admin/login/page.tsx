@@ -9,7 +9,7 @@ export default function LoginPage() {
     <div className="a-login">
       <div className="a-login-card">
         <h1>Admin sign-in</h1>
-        <div className="sub">Nexvora Tech — content management</div>
+        <div className="sub">Zivox Tech — content management</div>
         <Suspense fallback={<div className="a-msg">Loading login form...</div>}>
           <LoginForm />
         </Suspense>

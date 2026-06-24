@@ -38,7 +38,6 @@ export default async function BlogSection() {
         <div className="breadcrumb">
           <Link href="/">Home</Link><span className="sep">/</span><span>Blog</span>
         </div>
-        <span className="eyebrow"><span className="dot"></span> Updated weekly</span>
         <h1>Notes on building <span className="serif-italic">software well.</span></h1>
         <p className="lead">Short, opinionated posts from our team — on AI, design, engineering, and what it takes to ship a great product.</p>
       </div>
@@ -61,7 +60,7 @@ export default async function BlogSection() {
           {posts.length > 0 ? (
             posts.map((p) => {
               const cat = (p.category || "").toLowerCase();
-              const author = p.author || "Nexvora Team";
+              const author = p.author || "Zivox Team";
               return (
                 <Link key={p.id} className="blog-card" href={`/blog/${p.slug}`} data-cats={cat}>
                   <div className="blog-thumb">

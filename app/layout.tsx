@@ -3,11 +3,11 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "Nexvora Tech — Modern digital solutions",
+    default: "Zivox Tech — Modern digital solutions",
     template: "%s",
   },
   description:
-    "Nexvora Tech builds premium websites, mobile apps, AI assistants, and custom business systems.",
+    "Zivox Tech builds premium websites, mobile apps, AI assistants, and custom business systems.",
 };
 
 export const viewport: Viewport = {

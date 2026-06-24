@@ -4,9 +4,9 @@ export default function Navbar() {
   return (
     <header className="nav" role="banner">
       <div className="nav-inner">
-        <Link className="brand" href="/" aria-label="Nexvora Tech home">
+        <Link className="brand" href="/" aria-label="Zivox Tech home">
           <span className="brand-mark" aria-hidden="true"></span>
-          <span className="brand-name">Nexvora<span>.</span></span>
+          <span className="brand-name">Zivox<span>.</span></span>
         </Link>
         <nav aria-label="Primary">
           <ul className="nav-links">

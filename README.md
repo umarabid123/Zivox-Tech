@@ -1,6 +1,6 @@
-# Nexvora Tech — Next.js
+# Zivox Tech — Next.js
 
-Pixel-perfect rebuild of the Nexvora Tech marketing site in **Next.js 14 (App Router) + TypeScript + Tailwind CSS**.
+Pixel-perfect rebuild of the Zivox Tech marketing site in **Next.js 14 (App Router) + TypeScript + Tailwind CSS**.
 
 ## Getting started
 

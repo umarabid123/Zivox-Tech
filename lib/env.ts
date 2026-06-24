@@ -24,6 +24,6 @@ export const env = {
   smtpPort: () => Number(opt("SMTP_PORT", "587")),
   smtpUser: () => req("SMTP_USER"),
   smtpPass: () => req("SMTP_PASS"),
-  smtpFrom: () => opt("SMTP_FROM", opt("SMTP_USER", "no-reply@nexvora.tech")),
+  smtpFrom: () => opt("SMTP_FROM", opt("SMTP_USER", "no-reply@zivox.tech")),
   contactToEmail: () => req("CONTACT_TO_EMAIL"),
 };

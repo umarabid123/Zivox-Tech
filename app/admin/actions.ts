@@ -53,7 +53,7 @@ export async function saveBlog(formData: FormData) {
     cover_image: String(formData.get("cover_image") || ""),
     category: String(formData.get("category") || ""),
     read_time: String(formData.get("read_time") || ""),
-    author: String(formData.get("author") || "Nexvora Team"),
+    author: String(formData.get("author") || "Zivox Team"),
     published: toBool(formData.get("published")),
   };
   const sb = supabaseService();

@@ -18,7 +18,7 @@ export default function TermsSection() {
         <span className="legal-updated">Last updated: May 23, 2026</span>
 
         <h2>1. Who we are</h2>
-        <p>Nexvora Tech ("we", "us") is a software design and development studio. By using this website, you ("you") agree to these terms. If you don't agree, please don't use it.</p>
+        <p>Zivox Tech ("we", "us") is a software design and development studio. By using this website, you ("you") agree to these terms. If you don't agree, please don't use it.</p>
 
         <h2>2. Using the website</h2>
         <p>You can browse, read, share and link to the site freely. You can't:</p>
@@ -36,7 +36,7 @@ export default function TermsSection() {
         <p>Anything you read on this site — including pricing ranges, timelines, or services described — is informational only. Actual engagements are governed by a separately signed Statement of Work or Master Services Agreement. In case of conflict, the signed agreement wins.</p>
 
         <h2>5. Intellectual property</h2>
-        <p>Content on this site — text, design, code shown in articles, logos — is © Nexvora Tech. Logos, names, and trademarks of our clients shown on the site (e.g. in case studies) belong to their respective owners and are used with permission.</p>
+        <p>Content on this site — text, design, code shown in articles, logos — is © Zivox Tech. Logos, names, and trademarks of our clients shown on the site (e.g. in case studies) belong to their respective owners and are used with permission.</p>
         <p>Code released to clients in our paid engagements transfers to the client per the signed agreement.</p>
 
         <h2>6. Third-party links</h2>
@@ -52,7 +52,7 @@ export default function TermsSection() {
         <p>These terms are governed by the laws of Portugal. Any disputes go to the courts of Lisbon, unless local consumer-protection law gives you a stronger forum.</p>
 
         <h2>10. Contact</h2>
-        <p>Questions or concerns? Email <a href="mailto:legal@nexvora.tech" style={{ color: 'var(--accent-2)' }}>legal@nexvora.tech</a> or use the <Link href="/contact" style={{ color: 'var(--accent-2)' }}>contact form</Link>.</p>
+        <p>Questions or concerns? Email <a href="mailto:legal@zivox.tech" style={{ color: 'var(--accent-2)' }}>legal@zivox.tech</a> or use the <Link href="/contact" style={{ color: 'var(--accent-2)' }}>contact form</Link>.</p>
       </div>
     </div>
     </section>

@@ -18,7 +18,7 @@ export default function Sidebar() {
   const path = usePathname();
   return (
     <aside className="a-side">
-      <div className="a-brand">Nexvora · Admin</div>
+      <div className="a-brand">Zivox · Admin</div>
       <nav className="a-nav">
         {ITEMS.map((it) => {
           const active =

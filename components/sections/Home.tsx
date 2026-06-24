@@ -6,16 +6,40 @@ export default function HomeSection() {
 
     <section id="home" className="hero">
       <div className="hero-aurora" aria-hidden="true"></div>
+
+      {/* Big brand-name carousel — background layer */}
+      <div className="brand-carousel" aria-hidden="true">
+        <div className="brand-carousel-track">
+          <span className="bc-word">Zivox Tech</span>
+          <span className="bc-star">★</span>
+          <span className="bc-word bc-word--outline">Zivox Tech</span>
+          <span className="bc-star">★</span>
+          <span className="bc-word">Zivox Tech</span>
+          <span className="bc-star">★</span>
+          <span className="bc-word bc-word--outline">Zivox Tech</span>
+          <span className="bc-star">★</span>
+          {/* duplicate set for seamless loop */}
+          <span className="bc-word">Zivox Tech</span>
+          <span className="bc-star">★</span>
+          <span className="bc-word bc-word--outline">Zivox Tech</span>
+          <span className="bc-star">★</span>
+          <span className="bc-word">Zivox Tech</span>
+          <span className="bc-star">★</span>
+          <span className="bc-word bc-word--outline">Zivox Tech</span>
+          <span className="bc-star">★</span>
+        </div>
+      </div>
+
       <div className="container">
-        <div className="hero-grid">
+        <div className="hero-grid hero-grid--centered">
           <div className="hero-text reveal">
-            <span className="eyebrow"><span className="dot"></span> New · AI-Powered Solutions Live</span>
+            <span className="eyebrow"><span className="dot"></span> Design · Build · Launch</span>
             <h1>
-              Digital products,<br />
-              engineered with <span className="serif-italic">intent.</span>
+              We build things<br />
+              people actually <span className="serif-italic">use.</span>
             </h1>
             <p className="lead">
-              We design and build modern websites, mobile apps, AI assistants, and custom business systems — for ambitious startups and growing teams worldwide.
+              Websites, mobile apps, and custom software — crafted with care for startups and growing businesses that want to stand out.
             </p>
             <div className="hero-ctas">
               <Link className="btn btn-primary btn-lg magnetic" href="/contact">
@@ -39,60 +63,6 @@ export default function HomeSection() {
                 <div className="stat-num"><span className="counter" data-counter="98">0</span><span style={{ color: 'var(--accent-2)' }}>%</span></div>
                 <div className="stat-label">Satisfaction rate</div>
               </div>
-            </div>
-          </div>
-
-          <div className="hero-visual reveal" style={{ transitionDelay: '.15s' }}>
-            <div className="dashboard" role="img" aria-label="Nexvora analytics dashboard preview">
-              <div className="dashboard-top">
-                <div className="traffic"><span></span><span></span><span></span></div>
-                <div className="url">app.nexvora.tech/dashboard</div>
-                <div style={{ width: '32px' }}></div>
-              </div>
-              <div className="dashboard-body">
-                <div className="kpi-row">
-                  <div className="kpi"><div className="kpi-label">MRR</div><div className="kpi-value">$42.8k</div><div className="kpi-delta">↑ 12.4%</div></div>
-                  <div className="kpi"><div className="kpi-label">Active Users</div><div className="kpi-value accent">8,492</div><div className="kpi-delta">↑ 4.7%</div></div>
-                  <div className="kpi"><div className="kpi-label">Conversion</div><div className="kpi-value">3.21%</div><div className="kpi-delta">↑ 0.6%</div></div>
-                </div>
-                <div className="chart-card">
-                  <div className="chart-head">
-                    <div><div className="label">Revenue · 30 days</div><div className="value">$128,420</div></div>
-                    <div className="legend"><span><span className="swatch"></span> This month</span><span><span className="swatch alt"></span> Last month</span></div>
-                  </div>
-                  <svg className="chart-svg" viewBox="0 0 400 130" preserveAspectRatio="none">
-                    <defs><linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#3B82F6" stopOpacity="0.35"></stop><stop offset="100%" stopColor="#3B82F6" stopOpacity="0"></stop></linearGradient></defs>
-                    <g stroke="#1F2128" strokeWidth="1"><line x1="0" y1="32" x2="400" y2="32"></line><line x1="0" y1="65" x2="400" y2="65"></line><line x1="0" y1="98" x2="400" y2="98"></line></g>
-                    <path className="chart-line alt" d="M0,90 L40,82 L80,86 L120,75 L160,78 L200,68 L240,72 L280,60 L320,64 L360,55 L400,58"></path>
-                    <path className="chart-area" d="M0,95 L40,85 L80,78 L120,62 L160,68 L200,48 L240,52 L280,32 L320,38 L360,22 L400,18 L400,130 L0,130 Z"></path>
-                    <path className="chart-line" d="M0,95 L40,85 L80,78 L120,62 L160,68 L200,48 L240,52 L280,32 L320,38 L360,22 L400,18"></path>
-                    <circle className="chart-dot" cx="400" cy="18" r="4"></circle>
-                  </svg>
-                </div>
-                <div className="dash-bottom-row">
-                  <div className="activity">
-                    <div className="row"><span style={{ color: '#86efac' }}>●</span>New signup — Acme Corp<span className="pill">+$249</span></div>
-                    <div className="row"><span style={{ color: 'var(--accent-2)' }}>●</span>Lead captured — chatbot<span className="pill">qualified</span></div>
-                    <div className="row"><span style={{ color: '#fbbf24' }}>●</span>Demo booked — 3:00 PM<span className="pill">today</span></div>
-                  </div>
-                  <div className="donut">
-                    <svg viewBox="0 0 36 36"><circle className="donut-track" cx="18" cy="18" r="15.9" fill="none" strokeWidth="3"></circle><circle className="donut-progress" cx="18" cy="18" r="15.9" fill="none" strokeWidth="3" strokeDasharray="78 100" pathLength="100"></circle></svg>
-                    <div className="donut-label"><b>78%</b>Goal progress</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="ai-card" aria-hidden="true">
-              <div className="ai-head">
-                <div className="ai-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"></path></svg></div>
-                <div>
-                  <div className="ai-title">Nova · AI Assistant</div>
-                  <div className="ai-sub"><span className="live"></span> Replying to a lead</div>
-                </div>
-              </div>
-              <div className="ai-msg">Got it — I can book a 30-min consult tomorrow at 2pm. Want me to send the invite?</div>
-              <div className="typing"><span></span><span></span><span></span></div>
             </div>
           </div>
         </div>
@@ -195,7 +165,7 @@ export default function HomeSection() {
       <div className="container">
         <div className="why-grid">
           <div className="reveal">
-            <div className="section-eyebrow">Why Nexvora</div>
+            <div className="section-eyebrow">Why Zivox</div>
             <h2 className="section-title">Engineered with <span className="serif-italic">care.</span> Delivered with rigor.</h2>
             <div className="feature-list">
               <div className="feature">
@@ -219,8 +189,8 @@ export default function HomeSection() {
 
           <div className="reveal" style={{ transitionDelay: '.15s' }}>
             <div className="code-block">
-              <div className="code-head"><div className="traffic"><span></span><span></span><span></span></div><span>~/nexvora/values.ts</span></div>
-              <pre className="code-body"><span className="gutter">1</span><span className="kw">const</span> <span className="key">nexvora</span> = &#123;{"\n"}<span className="gutter">2</span>  <span className="key">mission</span>: <span className="str">"build software that ships"</span>,{"\n"}<span className="gutter">3</span>  <span className="key">approach</span>: [{"\n"}<span className="gutter">4</span>    <span className="str">"design before code"</span>,{"\n"}<span className="gutter">5</span>    <span className="str">"weekly demos"</span>,{"\n"}<span className="gutter">6</span>    <span className="str">"no surprises"</span>,{"\n"}<span className="gutter">7</span>  ],{"\n"}<span className="gutter">8</span>  <span className="key">stack</span>: &#123;{"\n"}<span className="gutter">9</span>    <span className="key">web</span>: <span className="str">"Next.js · TypeScript"</span>,{"\n"}<span className="gutter">10</span>    <span className="key">mobile</span>: <span className="str">"React Native · Flutter"</span>,{"\n"}<span className="gutter">11</span>    <span className="key">ai</span>: <span className="str">"OpenAI · RAG · vector DBs"</span>,{"\n"}<span className="gutter">12</span>  &#125;,{"\n"}<span className="gutter">13</span>  <span className="key">delivery</span>: <span className="num">4</span><span className="kw">..</span><span className="num">12</span><span className="kw"> as</span> <span className="key">weeks</span>,{"\n"}<span className="gutter">14</span>  <span className="comment">// ↓ what clients actually get</span>{"\n"}<span className="gutter">15</span>  <span className="key">outcomes</span>: <span className="fn">deliver</span>(&#123;{"\n"}<span className="gutter">16</span>    <span className="key">quality</span>: <span className="str">"production-grade"</span>,{"\n"}<span className="gutter">17</span>    <span className="key">timeline</span>: <span className="str">"on schedule"</span>,{"\n"}<span className="gutter">18</span>    <span className="key">support</span>: <span className="str">"post-launch, always"</span>,{"\n"}<span className="gutter">19</span>  &#125;),{"\n"}<span className="gutter">20</span>&#125;;</pre>
+              <div className="code-head"><div className="traffic"><span></span><span></span><span></span></div><span>~/zivox/values.ts</span></div>
+              <pre className="code-body"><span className="gutter">1</span><span className="kw">const</span> <span className="key">zivox</span> = &#123;{"\n"}<span className="gutter">2</span>  <span className="key">mission</span>: <span className="str">"build software that ships"</span>,{"\n"}<span className="gutter">3</span>  <span className="key">approach</span>: [{"\n"}<span className="gutter">4</span>    <span className="str">"design before code"</span>,{"\n"}<span className="gutter">5</span>    <span className="str">"weekly demos"</span>,{"\n"}<span className="gutter">6</span>    <span className="str">"no surprises"</span>,{"\n"}<span className="gutter">7</span>  ],{"\n"}<span className="gutter">8</span>  <span className="key">stack</span>: &#123;{"\n"}<span className="gutter">9</span>    <span className="key">web</span>: <span className="str">"Next.js · TypeScript"</span>,{"\n"}<span className="gutter">10</span>    <span className="key">mobile</span>: <span className="str">"React Native · Flutter"</span>,{"\n"}<span className="gutter">11</span>    <span className="key">ai</span>: <span className="str">"OpenAI · RAG · vector DBs"</span>,{"\n"}<span className="gutter">12</span>  &#125;,{"\n"}<span className="gutter">13</span>  <span className="key">delivery</span>: <span className="num">4</span><span className="kw">..</span><span className="num">12</span><span className="kw"> as</span> <span className="key">weeks</span>,{"\n"}<span className="gutter">14</span>  <span className="comment">// ↓ what clients actually get</span>{"\n"}<span className="gutter">15</span>  <span className="key">outcomes</span>: <span className="fn">deliver</span>(&#123;{"\n"}<span className="gutter">16</span>    <span className="key">quality</span>: <span className="str">"production-grade"</span>,{"\n"}<span className="gutter">17</span>    <span className="key">timeline</span>: <span className="str">"on schedule"</span>,{"\n"}<span className="gutter">18</span>    <span className="key">support</span>: <span className="str">"post-launch, always"</span>,{"\n"}<span className="gutter">19</span>  &#125;),{"\n"}<span className="gutter">20</span>&#125;;</pre>
             </div>
           </div>
         </div>
@@ -295,7 +265,7 @@ export default function HomeSection() {
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"></path></svg>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"></path></svg>
             </div>
-            <p className="quote">"Nexvora shipped our internal dashboard in eight weeks. It's now the single tool our ops team opens every morning."</p>
+            <p className="quote">"Zivox shipped our internal dashboard in eight weeks. It's now the single tool our ops team opens every morning."</p>
             <div className="testimonial-author"><div className="avatar" style={{ background: 'linear-gradient(135deg, #3B82F6, #1d4fb3)' }}>AT</div><div><div className="author-name">Adaeze Thompson</div><div className="author-role">Head of Operations, Northpeak</div></div></div>
           </article>
           <article className="testimonial">
