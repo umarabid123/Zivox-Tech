@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "Zivoxtech — Modern digital solutions",
+    default: "Zivoxtech • Builds Together",
     template: "%s",
   },
   description:

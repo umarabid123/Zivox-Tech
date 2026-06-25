@@ -1,8 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useScroll, useMotionValueEvent, motion } from "framer-motion";
 import { useState } from "react";
+import logo from "../../app/assets/images/zivoxtech.png";
 
 const springTransition = { duration: 0.65, ease: [0.22, 1, 0.36, 1] } as const;
 const bgTransition = { duration: 0.85, ease: [0.22, 1, 0.36, 1] } as const;
@@ -72,8 +74,7 @@ export default function Navbar() {
           aria-label="Zivoxtech home"
           style={{ position: "relative", zIndex: 1 }}
         >
-          <span className="brand-mark" aria-hidden="true"></span>
-          <span className="brand-name">Zivoxtech<span>.</span></span>
+          <Image src={logo} alt="Zivox Tech Logo" style={{ height: "42px", width: "auto" }} />
         </Link>
 
         <nav aria-label="Primary" style={{ position: "relative", zIndex: 1 }}>
