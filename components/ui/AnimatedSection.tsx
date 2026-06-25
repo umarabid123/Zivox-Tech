@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
 interface AnimatedSectionProps {
@@ -11,7 +11,7 @@ interface AnimatedSectionProps {
   /** Animation variant: "fadeUp" | "fadeIn" | "scaleUp" */
   variant?: "fadeUp" | "fadeIn" | "scaleUp";
   /** Tag to render as (default: "div") */
-  as?: keyof JSX.IntrinsicElements;
+  as?: keyof React.JSX.IntrinsicElements;
   /** Threshold to trigger animation (default: 0.1) */
   threshold?: number;
   id?: string;
@@ -58,7 +58,7 @@ const variants = {
 
 const transition = {
   duration: 0.7,
-  ease: [0.22, 1, 0.36, 1],
+  ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
 };
 
 export default function AnimatedSection({
@@ -133,7 +133,7 @@ const staggerItemVariants = {
     scale: 1,
     transition: {
       duration: 0.65,
-      ease: [0.22, 1, 0.36, 1],
+      ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
     },
   },
 };
