@@ -2,7 +2,7 @@ import "../../styles/admin.css";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: { default: "Admin — Zivox Tech", template: "%s — Admin" },
+  title: { default: "Admin — Zivoxtech", template: "%s — Admin" },
   robots: { index: false, follow: false },
 };
 

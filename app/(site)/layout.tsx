@@ -4,6 +4,7 @@ import MobileDrawer from "@/components/layout/MobileDrawer";
 import Footer from "@/components/layout/Footer";
 import Chatbot from "@/components/layout/Chatbot";
 import SiteInteractions from "@/components/SiteInteractions";
+import CursorGlow from "@/components/ui/CursorGlow";
 
 /**
  * Public-site layout. Wraps every page under the (site) route group with
@@ -12,6 +13,7 @@ import SiteInteractions from "@/components/SiteInteractions";
 export default function SiteLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
+      <CursorGlow />
       <Navbar />
       <MobileDrawer />
       <main>{children}</main>

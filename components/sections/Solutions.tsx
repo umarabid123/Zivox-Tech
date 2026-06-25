@@ -1,4 +1,5 @@
 import Link from "next/link";
+import AnimatedSection, { StaggerContainer, StaggerItem } from "@/components/ui/AnimatedSection";
 
 export default function SolutionsSection() {
   return (
@@ -15,8 +16,9 @@ export default function SolutionsSection() {
 
     <section className="section" style={{ paddingTop: '80px' }}>
       <div className="container">
-        <div className="solutions-grid reveal-stagger" style={{ gridTemplateColumns: '1fr 1fr' }}>
+        <StaggerContainer className="solutions-grid reveal-stagger" style={{ gridTemplateColumns: '1fr 1fr' }}>
 
+          <StaggerItem>
           <article className="solution-card" style={{ padding: '32px' }}>
             <div className="sol-head">
               <span className="sol-num">/ 01 — EDUCATION</span>
@@ -30,7 +32,9 @@ export default function SolutionsSection() {
               <li><span className="check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span><span>Quizzes, certificates, badges</span></li>
             </ul>
           </article>
+          </StaggerItem>
 
+          <StaggerItem>
           <article className="solution-card" style={{ padding: '32px' }}>
             <div className="sol-head">
               <span className="sol-num">/ 02 — HEALTHCARE</span>
@@ -44,7 +48,9 @@ export default function SolutionsSection() {
               <li><span className="check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span><span>Insurance + billing integrations</span></li>
             </ul>
           </article>
+          </StaggerItem>
 
+          <StaggerItem>
           <article className="solution-card" style={{ padding: '32px' }}>
             <div className="sol-head">
               <span className="sol-num">/ 03 — AUTOMATION</span>
@@ -58,7 +64,9 @@ export default function SolutionsSection() {
               <li><span className="check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span><span>Scheduled reports &amp; alerting</span></li>
             </ul>
           </article>
+          </StaggerItem>
 
+          <StaggerItem>
           <article className="solution-card" style={{ padding: '32px' }}>
             <div className="sol-head">
               <span className="sol-num">/ 04 — BOOKING</span>
@@ -72,7 +80,9 @@ export default function SolutionsSection() {
               <li><span className="check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span><span>SMS &amp; email reminders</span></li>
             </ul>
           </article>
+          </StaggerItem>
 
+          <StaggerItem>
           <article className="solution-card" style={{ padding: '32px' }}>
             <div className="sol-head">
               <span className="sol-num">/ 05 — MANAGEMENT</span>
@@ -86,7 +96,9 @@ export default function SolutionsSection() {
               <li><span className="check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span><span>Reports, exports, dashboards</span></li>
             </ul>
           </article>
+          </StaggerItem>
 
+          <StaggerItem>
           <article className="solution-card" style={{ padding: '32px' }}>
             <div className="sol-head">
               <span className="sol-num">/ 06 — AI SUPPORT</span>
@@ -100,49 +112,56 @@ export default function SolutionsSection() {
               <li><span className="check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span><span>Hand-off to human when needed</span></li>
             </ul>
           </article>
+          </StaggerItem>
 
-        </div>
+        </StaggerContainer>
       </div>
     </section>
 
 
     <section className="section" style={{ paddingTop: '40px' }}>
       <div className="container">
-        <header className="section-header center reveal">
+        <AnimatedSection as="header" className="section-header center reveal" variant="fadeUp">
           <div className="section-eyebrow">How we tailor</div>
           <h2 className="section-title">Patterns, <span className="serif-italic">not</span> templates.</h2>
           <p className="section-sub">Every solution is rebuilt for your team — same proven shape, completely new code and design tuned to fit.</p>
-        </header>
-        <div className="services-grid reveal-stagger">
+        </AnimatedSection>
+        <StaggerContainer className="services-grid reveal-stagger">
+          <StaggerItem>
           <article className="service-card">
             <div className="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 20l9-7-9-7-9 7 9 7zM12 4v16"></path></svg></div>
             <h3>Discovery first</h3>
             <p>We learn your workflow before proposing anything. Bring spreadsheets, screenshots, half-finished projects — all useful.</p>
           </article>
+          </StaggerItem>
+          <StaggerItem>
           <article className="service-card">
             <div className="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 3"></path></svg></div>
             <h3>Adapt the pattern</h3>
             <p>We take a proven shape and bend it to your terminology, roles, and existing tools — not the other way around.</p>
           </article>
+          </StaggerItem>
+          <StaggerItem>
           <article className="service-card">
             <div className="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
             <h3>You own the code</h3>
             <p>Clean, documented codebases delivered on your GitHub. You can hire anyone to extend it — including us.</p>
           </article>
-        </div>
+          </StaggerItem>
+        </StaggerContainer>
       </div>
     </section>
 
     <section className="section" style={{ paddingTop: '0' }}>
       <div className="container">
-        <div className="cta-box reveal">
+        <AnimatedSection className="cta-box reveal" variant="scaleUp">
           <h2>Got an industry we missed? <span className="serif-italic">Tell us.</span></h2>
           <p>We've shipped in plenty of niches not listed here. Send us your context and we'll tell you if and how we can help.</p>
           <div className="cta-actions">
             <Link className="btn btn-primary btn-lg" href="/contact">Start a conversation <span className="arrow">→</span></Link>
             <Link className="btn btn-ghost btn-lg" href="/portfolio">See our work</Link>
           </div>
-        </div>
+        </AnimatedSection>
       </div>
     </section>
     </section>

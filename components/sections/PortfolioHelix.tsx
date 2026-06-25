@@ -161,7 +161,7 @@ export default function PortfolioHelixSection() {
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"></path></svg>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"></path></svg>
           </div>
-          <p className="quote" style={{ fontSize: '22px' }}>"Zivox shipped Helix in eight working weeks. It's now the single tool our ops team opens every morning — and our retention metrics are visibly cleaner."</p>
+          <p className="quote" style={{ fontSize: '22px' }}>"Zivoxtech shipped Helix in eight working weeks. It's now the single tool our ops team opens every morning — and our retention metrics are visibly cleaner."</p>
           <div className="testimonial-author">
             <div className="avatar" style={{ background: 'linear-gradient(135deg, #3B82F6, #1d4fb3)' }}>AT</div>
             <div><div className="author-name">Adaeze Thompson</div><div className="author-role">Head of Operations, Northpeak</div></div>

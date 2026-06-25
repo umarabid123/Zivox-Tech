@@ -44,7 +44,7 @@ export default function BlogForm({ row }: { row?: Row }) {
       </div>
       <div className="a-field">
         <label>Author</label>
-        <input name="author" defaultValue={row?.author || "Zivox Team"} />
+        <input name="author" defaultValue={row?.author || "Zivoxtech Team"} />
       </div>
       <div className="a-field">
         <label>Excerpt</label>

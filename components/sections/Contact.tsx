@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import AnimatedSection from "@/components/ui/AnimatedSection";
 
 export default function ContactSection() {
   return (
@@ -8,15 +11,15 @@ export default function ContactSection() {
         <div className="breadcrumb">
           <Link href="/">Home</Link><span className="sep">/</span><span>Contact</span>
         </div>
-        <h1>Let's build <span className="serif-italic">something.</span></h1>
-        <p className="lead">Tell us about your project and we'll come back within a business day with clear next steps.</p>
+        <h1>Let&apos;s build <span className="serif-italic">something.</span></h1>
+        <p className="lead">Tell us about your project and we&apos;ll come back within a business day with clear next steps.</p>
       </div>
     </section>
 
     <section className="section" style={{ paddingTop: '60px' }}>
       <div className="container">
         <div className="contact-grid">
-          <div className="contact-info reveal">
+          <AnimatedSection className="contact-info reveal" variant="fadeUp">
             <div className="section-eyebrow">Reach us</div>
             <h2 style={{ fontSize: 'clamp(26px, 3vw, 36px)' }}>Pick the path that <span className="serif-italic">fits.</span></h2>
 
@@ -45,71 +48,73 @@ export default function ContactSection() {
                 <p>See what we do and the engagement models we offer.</p>
               </Link>
             </div>
-          </div>
+          </AnimatedSection>
 
-          <form id="contactForm" className="contact-form reveal" style={{ transitionDelay: '.1s' }} noValidate>
-            <div className="form-success">
-              <span>✓</span>
-              <span>Message received — we'll be in touch within 24 hours.</span>
-            </div>
-            <div className="field-row">
-              <div className="field">
-                <label htmlFor="name">Full Name <span className="req">*</span></label>
-                <input id="name" name="name" type="text" placeholder="Jane Doe" data-validate="required" />
-                <span className="error-msg">Please tell us your name</span>
+          <AnimatedSection variant="fadeUp" delay={0.15}>
+            <form id="contactForm" className="contact-form reveal" style={{ transitionDelay: '.1s' }} noValidate>
+              <div className="form-success">
+                <span>✓</span>
+                <span>Message received — we&apos;ll be in touch within 24 hours.</span>
+              </div>
+              <div className="field-row">
+                <div className="field">
+                  <label htmlFor="name">Full Name <span className="req">*</span></label>
+                  <input id="name" name="name" type="text" placeholder="Jane Doe" data-validate="required" />
+                  <span className="error-msg">Please tell us your name</span>
+                </div>
+                <div className="field">
+                  <label htmlFor="email">Email <span className="req">*</span></label>
+                  <input id="email" name="email" type="email" placeholder="jane@company.com" data-validate="required,email" />
+                  <span className="error-msg">Please enter a valid email</span>
+                </div>
+              </div>
+              <div className="field-row">
+                <div className="field">
+                  <label htmlFor="phone">Phone (optional)</label>
+                  <input id="phone" name="phone" type="tel" placeholder="+1 415 ..." />
+                </div>
+                <div className="field">
+                  <label htmlFor="company">Company (optional)</label>
+                  <input id="company" name="company" type="text" placeholder="Acme, Inc." />
+                </div>
+              </div>
+              <div className="field-row">
+                <div className="field">
+                  <label htmlFor="service">Service required <span className="req">*</span></label>
+                  <select id="service" name="service" defaultValue="" data-validate="required">
+                    <option value="">Select a service</option>
+                    <option>Web Development</option>
+                    <option>Mobile App</option>
+                    <option>AI Solution</option>
+                    <option>Custom Software</option>
+                    <option>Other</option>
+                  </select>
+                  <span className="error-msg">Please select a service</span>
+                </div>
+                <div className="field">
+                  <label htmlFor="budget">Budget range</label>
+                  <select id="budget" name="budget" defaultValue="">
+                    <option value="">Not sure yet</option>
+                    <option>Under $5k</option>
+                    <option>$5k – $15k</option>
+                    <option>$15k – $50k</option>
+                    <option>$50k+</option>
+                  </select>
+                </div>
               </div>
               <div className="field">
-                <label htmlFor="email">Email <span className="req">*</span></label>
-                <input id="email" name="email" type="email" placeholder="jane@company.com" data-validate="required,email" />
-                <span className="error-msg">Please enter a valid email</span>
+                <label htmlFor="details">Project details <span className="req">*</span></label>
+                <textarea id="details" name="details" placeholder="Tell us about your project, goals and timeline (20+ chars)…" data-validate="required,min:20"></textarea>
+                <span className="error-msg">Please share at least 20 characters about your project</span>
               </div>
-            </div>
-            <div className="field-row">
-              <div className="field">
-                <label htmlFor="phone">Phone (optional)</label>
-                <input id="phone" name="phone" type="tel" placeholder="+1 415 ..." />
-              </div>
-              <div className="field">
-                <label htmlFor="company">Company (optional)</label>
-                <input id="company" name="company" type="text" placeholder="Acme, Inc." />
-              </div>
-            </div>
-            <div className="field-row">
-              <div className="field">
-                <label htmlFor="service">Service required <span className="req">*</span></label>
-                <select id="service" name="service" defaultValue="" data-validate="required">
-                  <option value="">Select a service</option>
-                  <option>Web Development</option>
-                  <option>Mobile App</option>
-                  <option>AI Solution</option>
-                  <option>Custom Software</option>
-                  <option>Other</option>
-                </select>
-                <span className="error-msg">Please select a service</span>
-              </div>
-              <div className="field">
-                <label htmlFor="budget">Budget range</label>
-                <select id="budget" name="budget" defaultValue="">
-                  <option value="">Not sure yet</option>
-                  <option>Under $5k</option>
-                  <option>$5k – $15k</option>
-                  <option>$15k – $50k</option>
-                  <option>$50k+</option>
-                </select>
-              </div>
-            </div>
-            <div className="field">
-              <label htmlFor="details">Project details <span className="req">*</span></label>
-              <textarea id="details" name="details" placeholder="Tell us about your project, goals and timeline (20+ chars)…" data-validate="required,min:20"></textarea>
-              <span className="error-msg">Please share at least 20 characters about your project</span>
-            </div>
-            <button className="btn btn-primary form-submit" type="submit">
-              Send Message <span className="arrow">→</span>
-            </button>
-            <p style={{ fontSize: '12px', color: 'var(--text-3)', margin: '12px 0 0', textAlign: 'center' }}>
-              We read every message. Most replies go out within 4 hours, M–F.
-            </p>
-          </form>
+              <button className="btn btn-primary form-submit" type="submit">
+                Send Message <span className="arrow">→</span>
+              </button>
+              <p style={{ fontSize: '12px', color: 'var(--text-3)', margin: '12px 0 0', textAlign: 'center' }}>
+                We read every message. Most replies go out within 4 hours, M–F.
+              </p>
+            </form>
+          </AnimatedSection>
         </div>
       </div>
     </section>
