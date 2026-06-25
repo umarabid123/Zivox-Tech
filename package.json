@@ -13,6 +13,7 @@
     "bcryptjs": "^2.4.3",
     "framer-motion": "^12.42.0",
     "jose": "^5.9.6",
+    "lucide-react": "^1.21.0",
     "next": "^16.2.9",
     "nodemailer": "^6.9.16",
     "react": "^19.2.0",

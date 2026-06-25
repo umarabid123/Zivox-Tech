@@ -116,6 +116,18 @@ create table if not exists public.booking_submissions (
 );
 create index if not exists booking_submissions_created_idx on public.booking_submissions (created_at desc);
 
+-- ---------- ADMIN USERS ----------
+create table if not exists public.admin_users (
+  email         text primary key,
+  full_name     text not null,
+  role          text not null default 'Admin',
+  avatar_url    text,
+  status        text default 'Active',
+  password_hash text not null,
+  created_at    timestamptz not null default now(),
+  updated_at    timestamptz not null default now()
+);
+
 -- =========================================================
 -- updated_at trigger
 -- =========================================================

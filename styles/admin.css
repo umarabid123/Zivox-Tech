@@ -10,8 +10,10 @@
 
 .nx-admin-root {
   --a-bg: #0b0c0f;
-  --a-panel: #14161b;
+  --a-panel: rgba(20, 22, 27, 0.92);
+  --a-panel-strong: #14161b;
   --a-border: #23262d;
+  --a-border-soft: rgba(255, 255, 255, 0.08);
   --a-text: #e8eaee;
   --a-muted: #8a8f9b;
   --a-accent: #7c5cff;
@@ -44,10 +46,21 @@
 }
 
 .nx-admin-root .a-brand {
-  font-weight: 700;
-  font-size: 16px;
   padding: 6px 10px 18px;
-  letter-spacing: -0.01em;
+  display: inline-flex;
+  align-items: center;
+}
+
+.nx-admin-root .a-brand img,
+.nx-admin-root .a-login-brand img,
+.nx-admin-root .a-profile-brand img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.nx-admin-root .a-brand img {
+  max-width: 138px;
 }
 
 .nx-admin-root .a-nav {
@@ -102,6 +115,7 @@
   border: 1px solid var(--a-border);
   border-radius: 10px;
   padding: 18px 20px;
+  box-shadow: 0 24px 60px -34px rgba(0, 0, 0, 0.45);
 }
 
 .nx-admin-root .a-grid {
@@ -174,6 +188,10 @@
   color: var(--a-text);
 }
 
+.nx-admin-root .a-btn.secondary:hover {
+  border-color: var(--a-accent);
+}
+
 .nx-admin-root .a-btn.danger {
   background: var(--a-danger);
 }
@@ -212,7 +230,7 @@
 .nx-admin-root .a-field input,
 .nx-admin-root .a-field textarea,
 .nx-admin-root .a-field select {
-  background: #0f1116;
+  background: rgba(15, 17, 22, 0.9);
   color: var(--a-text);
   border: 1px solid var(--a-border);
   border-radius: 6px;
@@ -232,6 +250,34 @@
   outline: 2px solid var(--a-accent);
   outline-offset: -1px;
   border-color: transparent;
+}
+
+.nx-admin-root .a-password-wrap {
+  position: relative;
+}
+
+.nx-admin-root .a-password-wrap input {
+  width: 100%;
+  padding-right: 44px;
+}
+
+.nx-admin-root .a-icon-btn {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 0;
+  background: transparent;
+  color: var(--a-muted);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 6px;
+}
+
+.nx-admin-root .a-icon-btn:hover {
+  color: var(--a-text);
 }
 
 .nx-admin-root .a-field-row {
@@ -256,6 +302,287 @@
   background: rgba(34, 197, 94, 0.12);
   color: #86efac;
   border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.nx-admin-root .a-top-sub {
+  color: var(--a-muted);
+  font-size: 13px;
+}
+
+.nx-admin-root .a-top-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.nx-admin-root .a-live-btn {
+  white-space: nowrap;
+}
+
+.nx-admin-root .a-profile {
+  position: relative;
+}
+
+.nx-admin-root .a-profile-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--a-border);
+  color: var(--a-text);
+  border-radius: 14px;
+  padding: 9px 12px;
+  cursor: pointer;
+}
+
+.nx-admin-root .a-profile-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1px;
+}
+
+.nx-admin-root .a-profile-meta strong {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.nx-admin-root .a-profile-meta span {
+  color: var(--a-muted);
+  font-size: 12px;
+}
+
+.nx-admin-root .a-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, var(--a-accent), #2dd4bf);
+}
+
+.nx-admin-root .a-profile-menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 10px);
+  min-width: 220px;
+  background: rgba(14, 16, 20, 0.98);
+  border: 1px solid var(--a-border);
+  border-radius: 16px;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+  padding: 8px;
+  z-index: 20;
+  backdrop-filter: blur(18px);
+}
+
+.nx-admin-root .a-profile-menu a,
+.nx-admin-root .a-profile-menu button {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: var(--a-text);
+  text-decoration: none;
+  border-radius: 12px;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.nx-admin-root .a-profile-menu a:hover,
+.nx-admin-root .a-profile-menu button:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.nx-admin-root .a-login-shell {
+  position: relative;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 28px;
+  overflow: hidden;
+}
+
+.nx-admin-root .a-login-backdrop {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(124, 92, 255, 0.16), transparent 34%),
+    radial-gradient(circle at 80% 20%, rgba(45, 212, 191, 0.12), transparent 30%),
+    radial-gradient(circle at 50% 80%, rgba(239, 68, 68, 0.08), transparent 28%);
+  pointer-events: none;
+}
+
+.nx-admin-root .a-login-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+}
+
+.nx-admin-root .a-login-back-link {
+  display: inline-flex;
+  margin-bottom: 14px;
+}
+
+.nx-admin-root .a-login-back-link a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--a-muted);
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.nx-admin-root .a-login-card.premium {
+  border-radius: 24px;
+  padding: 28px;
+  background: rgba(19, 21, 27, 0.88);
+  border: 1px solid var(--a-border-soft);
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.38);
+  backdrop-filter: blur(20px);
+}
+
+.nx-admin-root .a-login-brand {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 18px;
+}
+
+.nx-admin-root .a-login-brand img {
+  max-width: 160px;
+}
+
+.nx-admin-root .a-login-card.premium h1 {
+  font-size: 28px;
+  letter-spacing: -0.03em;
+}
+
+.nx-admin-root .a-profile-page {
+  display: grid;
+  gap: 18px;
+}
+
+.nx-admin-root .a-profile-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.nx-admin-root .a-profile-head {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.nx-admin-root .a-profile-avatar {
+  width: 88px;
+  height: 88px;
+  border-radius: 26px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  color: #fff;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.nx-admin-root .a-profile-avatar-img {
+  object-fit: cover;
+}
+
+.nx-admin-root .a-kicker {
+  margin: 0 0 6px;
+  color: var(--a-muted);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.nx-admin-root .a-profile-name {
+  margin: 0;
+  font-size: 30px;
+  letter-spacing: -0.03em;
+}
+
+.nx-admin-root .a-profile-email {
+  margin: 6px 0 0;
+  color: var(--a-muted);
+}
+
+.nx-admin-root .a-profile-badges {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+
+.nx-admin-root .a-profile-brand img {
+  max-width: 144px;
+}
+
+.nx-admin-root .a-profile-card h3 {
+  margin: 0 0 6px;
+  font-size: 18px;
+}
+
+.nx-admin-root .a-profile-card p {
+  margin: 0 0 18px;
+  color: var(--a-muted);
+}
+
+.nx-admin-root .a-profile-form {
+  max-width: 520px;
+}
+
+@media (prefers-color-scheme: light) {
+  .nx-admin-root {
+    --a-bg: #eef1f6;
+    --a-panel: rgba(255, 255, 255, 0.92);
+    --a-panel-strong: #fff;
+    --a-border: #d7dce5;
+    --a-border-soft: rgba(15, 23, 42, 0.08);
+    --a-text: #101522;
+    --a-muted: #5d6475;
+  }
+
+  .nx-admin-root .a-side,
+  .nx-admin-root .a-profile-menu {
+    background: rgba(255, 255, 255, 0.9);
+  }
+
+  .nx-admin-root .a-nav a:hover {
+    background: rgba(124, 92, 255, 0.08);
+  }
+
+  .nx-admin-root .a-nav a.active {
+    background: rgba(124, 92, 255, 0.12);
+    color: var(--a-text);
+  }
+
+  .nx-admin-root .a-btn.secondary,
+  .nx-admin-root .a-profile-trigger,
+  .nx-admin-root .a-field input,
+  .nx-admin-root .a-field textarea,
+  .nx-admin-root .a-field select {
+    background: rgba(255, 255, 255, 0.9);
+  }
+
+  .nx-admin-root .a-profile-card p,
+  .nx-admin-root .a-profile-meta span,
+  .nx-admin-root .a-top-sub,
+  .nx-admin-root .a-login-card.premium .sub {
+    color: var(--a-muted);
+  }
 }
 
 /* ------------ Login page ------------ */
