@@ -3,11 +3,11 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "Zivox Tech — Modern digital solutions",
+    default: "Zivoxtech • Builds Together",
     template: "%s",
   },
   description:
-    "Zivox Tech builds premium websites, mobile apps, AI assistants, and custom business systems.",
+    "Zivoxtech builds premium websites, mobile apps, AI assistants, and custom business systems.",
 };
 
 export const viewport: Viewport = {

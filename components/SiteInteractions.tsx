@@ -153,7 +153,7 @@ export default function SiteInteractions() {
         chips: ["Open form", "Book consultation"],
       },
       hello: {
-        text: "Hi there — I'm Nova, Zivox's assistant. What can I help with today?",
+        text: "Hi there — I'm Nova, Zivoxtech's assistant. What can I help with today?",
         chips: ["Pricing", "Services", "Timeline", "Book consultation"],
       },
     };
@@ -242,7 +242,7 @@ export default function SiteInteractions() {
     chatForm?.addEventListener("submit", onChatSubmit);
     const chatInit = setTimeout(() => {
       if (chatBody && !chatBody.children.length) {
-        addMsg("👋 Hi — I'm <b>Nova</b>, Zivox's AI assistant. What brings you here today?", "bot", ["Pricing", "Services", "Book consultation"]);
+      addMsg("👋 Hi — I'm <b>Nova</b>, Zivoxtech's AI assistant. What brings you here today?", "bot", ["Pricing", "Services", "Book consultation"]);
       }
     }, 200);
 

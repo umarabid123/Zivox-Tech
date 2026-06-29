@@ -18,7 +18,7 @@ export default function TermsSection() {
         <span className="legal-updated">Last updated: May 23, 2026</span>
 
         <h2>1. Who we are</h2>
-        <p>Zivox Tech ("we", "us") is a software design and development studio. By using this website, you ("you") agree to these terms. If you don't agree, please don't use it.</p>
+        <p>Zivoxtech (&quot;we&quot;, &quot;us&quot;) is a software design and development studio. By using this website, you (&quot;you&quot;) agree to these terms. If you don&apos;t agree, please don&apos;t use it.</p>
 
         <h2>2. Using the website</h2>
         <p>You can browse, read, share and link to the site freely. You can't:</p>
@@ -36,7 +36,7 @@ export default function TermsSection() {
         <p>Anything you read on this site — including pricing ranges, timelines, or services described — is informational only. Actual engagements are governed by a separately signed Statement of Work or Master Services Agreement. In case of conflict, the signed agreement wins.</p>
 
         <h2>5. Intellectual property</h2>
-        <p>Content on this site — text, design, code shown in articles, logos — is © Zivox Tech. Logos, names, and trademarks of our clients shown on the site (e.g. in case studies) belong to their respective owners and are used with permission.</p>
+        <p>Content on this site — text, design, code shown in articles, logos — is © Zivoxtech. Logos, names, and trademarks of our clients shown on the site (e.g. in case studies) belong to their respective owners and are used with permission.</p>
         <p>Code released to clients in our paid engagements transfers to the client per the signed agreement.</p>
 
         <h2>6. Third-party links</h2>

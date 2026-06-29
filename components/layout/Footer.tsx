@@ -8,7 +8,7 @@ export default function Footer() {
           <div className="footer-col footer-about">
             <Link className="brand" href="/">
               <span className="brand-mark" aria-hidden="true"></span>
-              <span className="brand-name">Zivox<span>.</span></span>
+              <span className="brand-name">Zivoxtech<span>.</span></span>
             </Link>
             <p>Modern digital solutions for ambitious startups and growing businesses worldwide. Web, mobile, AI, and custom software — engineered with care.</p>
             <span className="status-pill">
@@ -61,7 +61,7 @@ export default function Footer() {
         </div>
         <div className="footer-bottom">
           <div className="copy">
-            <span>© 2026 Zivox Tech.</span>
+            <span>© 2026 Zivoxtech.</span>
             <span className="sep"></span>
             <span>Crafted in Lisbon</span>
             <span className="sep"></span>

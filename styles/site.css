@@ -701,10 +701,8 @@ h3 { font-size: clamp(20px, 2vw, 24px); letter-spacing: -0.02em; line-height: 1.
   top: 14px;
   left: 50%;
   transform: translateX(-50%);
-  width: calc(100% - 32px);
-  max-width: var(--container);
+  width: 80%;
   z-index: 60;
-  transition: all 0.3s var(--ease);
 }
 .nav-inner {
   display: flex;
@@ -716,11 +714,17 @@ h3 { font-size: clamp(20px, 2vw, 24px); letter-spacing: -0.02em; line-height: 1.
   background: var(--nav-bg);
   backdrop-filter: saturate(180%) blur(18px);
   -webkit-backdrop-filter: saturate(180%) blur(18px);
+  /* overflow:hidden clips the center-expanding background overlay */
+  overflow: hidden;
+  position: relative;
+  /* border-color transition handled by Framer Motion on nav-inner */
 }
 .nav.scrolled .nav-inner {
-  background: var(--nav-bg-scrolled);
   border-color: var(--nav-border-scrolled);
 }
+
+/* ===== Custom cursor ===== */
+
 .brand {
   display: inline-flex;
   align-items: center;
@@ -948,7 +952,6 @@ h3 { font-size: clamp(20px, 2vw, 24px); letter-spacing: -0.02em; line-height: 1.
 .bc-word--outline {
   color: transparent;
   -webkit-text-stroke: 2px var(--text);
-  text-stroke: 2px var(--text);
 }
 .bc-star {
   font-size: clamp(32px, 5vw, 72px);
@@ -1823,27 +1826,6 @@ footer::before {
   transform: translateX(-50%);
   opacity: 0.55;
 }
-/* Giant wordmark watermark */
-footer::after {
-  content: "Nexvora.";
-  position: absolute;
-  bottom: -70px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(140px, 22vw, 320px);
-  letter-spacing: -0.06em;
-  color: transparent;
-  background: linear-gradient(180deg, var(--text), transparent 80%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  opacity: 0.045;
-  pointer-events: none;
-  white-space: nowrap;
-  line-height: 0.9;
-}
-[data-theme="light"] footer::after { opacity: 0.07; }
 
 footer .container { position: relative; z-index: 1; }
 

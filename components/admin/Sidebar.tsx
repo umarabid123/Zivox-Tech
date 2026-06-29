@@ -1,7 +1,9 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import logo from "@/app/assets/images/zivoxtech.png";
 
 const ITEMS = [
   { href: "/admin", label: "Dashboard" },
@@ -18,7 +20,9 @@ export default function Sidebar() {
   const path = usePathname();
   return (
     <aside className="a-side">
-      <div className="a-brand">Zivox · Admin</div>
+      <Link href="/admin" className="a-brand" aria-label="Admin home">
+        <Image src={logo} alt="ZIVOXTech" priority />
+      </Link>
       <nav className="a-nav">
         {ITEMS.map((it) => {
           const active =

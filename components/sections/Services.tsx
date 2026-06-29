@@ -1,4 +1,5 @@
 import Link from "next/link";
+import AnimatedSection, { StaggerContainer, StaggerItem } from "@/components/ui/AnimatedSection";
 
 export default function ServicesSection() {
   return (
@@ -19,7 +20,7 @@ export default function ServicesSection() {
 
     <section className="container">
       <div className="service-detail">
-        <div className="reveal">
+        <AnimatedSection className="reveal" variant="fadeUp">
           <div className="section-eyebrow">01 · Web Solutions</div>
           <h2>Websites that <span className="serif-italic">convert,</span> dashboards that compound.</h2>
           <p className="lead">Marketing sites, customer portals, dashboards, e-commerce — built fast, accessible by default, and tuned for performance.</p>
@@ -42,8 +43,8 @@ export default function ServicesSection() {
             </li>
           </ul>
           <Link className="btn btn-ghost" style={{ marginTop: '24px' }} href="/contact">Start a web project <span className="arrow">→</span></Link>
-        </div>
-        <div className="service-visual reveal" style={{ transitionDelay: '.1s' }}>
+        </AnimatedSection>
+        <AnimatedSection className="service-visual reveal" variant="fadeIn" delay={0.1}>
           <div className="kpi-row">
             <div className="kpi"><div className="kpi-label">Visits / mo</div><div className="kpi-value">142k</div><div className="kpi-delta">↑ 18%</div></div>
             <div className="kpi"><div className="kpi-label">CVR</div><div className="kpi-value accent">4.2%</div><div className="kpi-delta">↑ 0.8%</div></div>
@@ -57,12 +58,12 @@ export default function ServicesSection() {
               <div style={{ textAlign: 'center' }}><div style={{ fontSize: '22px', color: 'var(--accent-2)', fontWeight: '600' }}>95</div><div style={{ fontSize: '11px', color: 'var(--text-3)' }}>BP</div></div>
             </div>
           </div>
-        </div>
+        </AnimatedSection>
       </div>
 
   
       <div className="service-detail reverse">
-        <div className="reveal">
+        <AnimatedSection className="reveal" variant="fadeUp">
           <div className="section-eyebrow">02 · Mobile App Development</div>
           <h2>Apps people <span className="serif-italic">open daily.</span></h2>
           <p className="lead">Cross-platform and native — designed for daily use, engineered to perform, and ready for the store within 8–12 weeks.</p>
@@ -73,8 +74,8 @@ export default function ServicesSection() {
             <li><span className="check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span><span><strong>Store submission &amp; ASO.</strong> We handle the Apple/Google review process so you don't have to.</span></li>
           </ul>
           <Link className="btn btn-ghost" style={{ marginTop: '24px' }} href="/contact">Start a mobile project <span className="arrow">→</span></Link>
-        </div>
-        <div className="service-visual reveal" style={{ transitionDelay: '.1s' }}>
+        </AnimatedSection>
+        <AnimatedSection className="service-visual reveal" variant="fadeIn" delay={0.1}>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px' }}>
             <div style={{ aspectRatio: '9/16', background: 'var(--bg-elev)', borderRadius: '18px', border: '1px solid var(--border-2)', padding: '14px', position: 'relative', overflow: 'hidden' }}>
               <div style={{ height: '6px', width: '50px', background: 'rgba(255,255,255,0.1)', borderRadius: '99px', margin: '0 auto 14px' }}></div>
@@ -98,12 +99,12 @@ export default function ServicesSection() {
               <div style={{ marginTop: '14px', fontSize: '12px', color: 'var(--text-2)' }}>"Most productive Tuesday yet."</div>
             </div>
           </div>
-        </div>
+        </AnimatedSection>
       </div>
 
   
       <div className="service-detail">
-        <div className="reveal">
+        <AnimatedSection className="reveal" variant="fadeUp">
           <div className="section-eyebrow">03 · AI Solutions</div>
           <h2>AI assistants that <span className="serif-italic">earn their keep.</span></h2>
           <p className="lead">RAG-powered chatbots, intelligent automations, internal copilots — production-grade, evaluated, and tied to clear business metrics.</p>
@@ -114,20 +115,20 @@ export default function ServicesSection() {
             <li><span className="check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span><span><strong>Evals &amp; safety.</strong> We don't ship until quality crosses your benchmark. Then we monitor in production.</span></li>
           </ul>
           <Link className="btn btn-ghost" style={{ marginTop: '24px' }} href="/contact">Start an AI project <span className="arrow">→</span></Link>
-        </div>
-        <div className="service-visual reveal" style={{ transitionDelay: '.1s' }}>
+        </AnimatedSection>
+        <AnimatedSection className="service-visual reveal" variant="fadeIn" delay={0.1}>
           <div className="ai-head" style={{ marginBottom: '14px' }}><div className="ai-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"></path></svg></div><div><div className="ai-title">Nova · Trained on your docs</div><div className="ai-sub"><span className="live"></span> Production · 24/7</div></div></div>
           <div className="msg bot" style={{ maxWidth: '100%', marginBottom: '8px' }}>How do I reset the device pairing on my Aurora hub?</div>
           <div className="msg user" style={{ alignSelf: 'flex-end', marginLeft: 'auto', maxWidth: '90%', marginBottom: '8px' }}>Hold the power button for 8 seconds until the LED flashes blue. Then re-add the device from Settings → Devices → Add new.</div>
           <div style={{ marginTop: '12px', padding: '10px 12px', background: 'rgba(16,185,129,0.08)', border: '1px solid rgba(16,185,129,0.2)', borderRadius: '10px', fontSize: '12.5px', color: '#6ee7b7' }}>
             ✓ Answered from <b>support-kb/aurora-hub.md</b> · 0.4s · helpful: 4.8 / 5
           </div>
-        </div>
+        </AnimatedSection>
       </div>
 
   
       <div className="service-detail reverse">
-        <div className="reveal">
+        <AnimatedSection className="reveal" variant="fadeUp">
           <div className="section-eyebrow">04 · Custom Software</div>
           <h2>Systems that fit <span className="serif-italic">your</span> operation.</h2>
           <p className="lead">CRMs, booking engines, internal tools, B2B portals. When the SaaS market doesn't have your shape, we build the exact thing.</p>
@@ -138,8 +139,8 @@ export default function ServicesSection() {
             <li><span className="check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span><span><strong>B2B portals.</strong> Customer-facing apps tied into your existing data and operations.</span></li>
           </ul>
           <Link className="btn btn-ghost" style={{ marginTop: '24px' }} href="/contact">Start a custom build <span className="arrow">→</span></Link>
-        </div>
-        <div className="service-visual reveal" style={{ transitionDelay: '.1s' }}>
+        </AnimatedSection>
+        <AnimatedSection className="service-visual reveal" variant="fadeIn" delay={0.1}>
           <div style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--text-3)', marginBottom: '12px', letterSpacing: '0.04em' }}>OPERATIONS DASHBOARD</div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '10px' }}>
             <div className="kpi"><div className="kpi-label">Open orders</div><div className="kpi-value">412</div></div>
@@ -152,19 +153,52 @@ export default function ServicesSection() {
             <div style={{ display: 'flex', justifyContent: 'space-between', padding: '4px 0' }}><span>Restock — SKU 142</span><span className="pill" style={{ background: 'rgba(251,191,36,0.1)', color: '#fbbf24' }}>soon</span></div>
             <div style={{ display: 'flex', justifyContent: 'space-between', padding: '4px 0' }}><span>Schedule shift change</span><span className="pill" style={{ background: 'var(--accent-soft)', color: 'var(--accent-2)' }}>today</span></div>
           </div>
-        </div>
+        </AnimatedSection>
+      </div>
+
+  
+      <div className="service-detail">
+        <AnimatedSection className="reveal" variant="fadeUp">
+          <div className="section-eyebrow">05 · UI/UX Design</div>
+          <h2>AI assistants that <span className="serif-italic">earn their keep.</span></h2>
+          <p className="lead">RAG-powered chatbots, intelligent automations, internal copilots — production-grade, evaluated, and tied to clear business metrics.</p>
+          <ul className="feature-list-small">
+            <li><span className="check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span><span><strong>Knowledge-base chatbots.</strong> RAG over your docs, support history and APIs. Deflects 60%+ of tickets.</span></li>
+            <li><span className="check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span><span><strong>Workflow automations.</strong> Triage tickets, draft replies, classify documents, summarize calls — all in your stack.</span></li>
+            <li><span className="check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span><span><strong>Custom CRMs.</strong> Lead-to-renewal pipelines tuned to your sales motion, with the integrations you actually use.</span></li>
+            <li><span className="check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span><span><strong>Booking systems.</strong> Calendars, slots, payments, reminders. For clinics, studios, restaurants, consultants.</span></li>
+            <li><span className="check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span><span><strong>Internal admin tools.</strong> Replace your spreadsheet patchwork with a real role-aware app.</span></li>
+            <li><span className="check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span><span><strong>B2B portals.</strong> Customer-facing apps tied into your existing data and operations.</span></li>
+          </ul>
+          <Link className="btn btn-ghost" style={{ marginTop: '24px' }} href="/contact">Start a design project <span className="arrow">→</span></Link>
+        </AnimatedSection>
+        <AnimatedSection className="service-visual reveal" variant="fadeIn" delay={0.1}>
+          <div style={{ background: 'var(--bg-elev)', borderRadius: '18px', border: '1px solid var(--border-2)', padding: '2px', display: 'flex', flexDirection: 'column', height: '100%' }}>OPERATIONS DASHBOARD</div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '10px' }}>
+            <div className="kpi"><div className="kpi-label">Open orders</div><div className="kpi-value">412</div></div>
+            <div className="kpi"><div className="kpi-label">Inventory low</div><div className="kpi-value accent">7</div></div>
+            <div className="kpi"><div className="kpi-label">Staff today</div><div className="kpi-value">23</div></div>
+            <div className="kpi"><div className="kpi-label">Revenue MTD</div><div className="kpi-value">$84k</div></div>
+          </div>
+          <div style={{ marginTop: '14px', padding: '12px 14px', background: 'rgba(255,255,255,0.015)', border: '1px solid var(--border-2)', borderRadius: '10px', fontSize: '12px', color: 'var(--text-2)' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', padding: '4px 0' }}><span>Approve refund</span><span className="pill" style={{ background: 'rgba(248,113,113,0.1)', color: '#fca5a5' }}>action</span></div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', padding: '4px 0' }}><span>Restock — SKU 142</span><span className="pill" style={{ background: 'rgba(251,191,36,0.1)', color: '#fbbf24' }}>soon</span></div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', padding: '4px 0' }}><span>Schedule shift change</span><span className="pill" style={{ background: 'var(--accent-soft)', color: 'var(--accent-2)' }}>today</span></div>
+          </div>
+        </AnimatedSection>
       </div>
     </section>
 
-
-    <section className="section">
+    <section className="section" style={{ paddingTop: '40px' }}>
       <div className="container">
-        <header className="section-header center reveal">
-          <div className="section-eyebrow">Pricing</div>
-          <h2 className="section-title">Engagement <span className="serif-italic">models.</span></h2>
-          <p className="section-sub">Three ways to work with us. Most clients pick Sprint or Build.</p>
-        </header>
-        <div className="pricing-grid reveal-stagger">
+        <AnimatedSection as="header" className="section-header center reveal" variant="fadeUp">
+          <div className="section-eyebrow">Pricing &amp; Engagements</div>
+          <h2 className="section-title">Transparent <span className="serif-italic">models.</span></h2>
+          <p className="section-sub">We don't do black-box estimates. We work in distinct models depending on what phase you're in.</p>
+        </AnimatedSection>
+
+        <StaggerContainer className="pricing-grid reveal-stagger">
+          <StaggerItem>
           <div className="pricing-card">
             <h3>Audit</h3>
             <p className="desc">A focused review of your existing product, codebase or design.</p>
@@ -177,6 +211,8 @@ export default function ServicesSection() {
             </ul>
             <Link className="btn btn-ghost" href="/contact">Get an audit</Link>
           </div>
+          </StaggerItem>
+          <StaggerItem>
           <div className="pricing-card featured">
             <span className="pricing-badge">Most chosen</span>
             <h3>Sprint</h3>
@@ -191,6 +227,8 @@ export default function ServicesSection() {
             </ul>
             <Link className="btn btn-primary" href="/contact">Start a sprint <span className="arrow">→</span></Link>
           </div>
+          </StaggerItem>
+          <StaggerItem>
           <div className="pricing-card">
             <h3>Build</h3>
             <p className="desc">End-to-end product delivery — design, build, ship, support.</p>
@@ -204,7 +242,8 @@ export default function ServicesSection() {
             </ul>
             <Link className="btn btn-ghost" href="/contact">Scope a build</Link>
           </div>
-        </div>
+          </StaggerItem>
+        </StaggerContainer>
         <p style={{ textAlign: 'center', color: 'var(--text-3)', fontSize: '13px', marginTop: '32px' }}>
           Not sure which fits? <Link href="/book" style={{ color: 'var(--accent-2)' }}>Book a free 30-min consultation</Link> and we'll help you decide.
         </p>
@@ -214,14 +253,14 @@ export default function ServicesSection() {
 
     <section className="section" style={{ paddingTop: '0' }}>
       <div className="container">
-        <div className="cta-box reveal">
-          <h2>Found something? <span className="serif-italic">Let's start.</span></h2>
-          <p>Tell us a little about your project — we'll come back within 24 hours with a clear next step.</p>
+        <AnimatedSection className="cta-box reveal" variant="scaleUp">
+          <h2>Ready to <span className="serif-italic">start?</span></h2>
+          <p>Book a discovery call to talk through your requirements and we'll tell you if we're the right fit.</p>
           <div className="cta-actions">
-            <Link className="btn btn-primary btn-lg" href="/contact">Start Your Project <span className="arrow">→</span></Link>
-            <Link className="btn btn-ghost btn-lg" href="/book">Book a Call</Link>
+            <Link className="btn btn-primary btn-lg" href="/book">Book a call <span className="arrow">→</span></Link>
+            <Link className="btn btn-ghost btn-lg" href="/contact">Send us an email</Link>
           </div>
-        </div>
+        </AnimatedSection>
       </div>
     </section>
     </section>

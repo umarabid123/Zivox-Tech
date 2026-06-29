@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
-import { env } from "@/lib/env";
-import { signSession, setAdminCookie } from "@/lib/auth";
+import { signSession, setAdminCookie, verifyAdminPassword } from "@/lib/auth";
 
 export const runtime = "nodejs";
 
@@ -18,14 +17,12 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: false, error: "Email and password required" }, { status: 400 });
   }
 
-  const adminEmail = env.adminEmail().trim().toLowerCase();
-  const adminPassword = env.adminPassword();
-
-  if (email !== adminEmail || password !== adminPassword) {
+  const user = await verifyAdminPassword(email, password);
+  if (!user) {
     return NextResponse.json({ ok: false, error: "Invalid credentials" }, { status: 401 });
   }
 
-  const token = await signSession(adminEmail);
+  const token = await signSession(user.email);
   await setAdminCookie(token);
   return NextResponse.json({ ok: true });
 }

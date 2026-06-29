@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { motion } from "framer-motion";
+import { Eye, EyeOff } from "lucide-react";
 
 export default function LoginForm() {
   const router = useRouter();
@@ -12,6 +14,7 @@ export default function LoginForm() {
   const [password, setPassword] = useState("");
   const [err, setErr] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -53,18 +56,30 @@ export default function LoginForm() {
       </div>
       <div className="a-field">
         <label htmlFor="password">Password</label>
-        <input
-          id="password"
-          type="password"
-          autoComplete="current-password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
+        <div className="a-password-wrap">
+          <input
+            id="password"
+            type={showPassword ? "text" : "password"}
+            autoComplete="current-password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <motion.button
+            type="button"
+            className="a-icon-btn"
+            onClick={() => setShowPassword((value) => !value)}
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.96 }}
+            aria-label={showPassword ? "Hide password" : "Show password"}
+          >
+            {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+          </motion.button>
+        </div>
       </div>
-      <button className="a-btn" type="submit" disabled={busy}>
+      <motion.button className="a-btn" type="submit" disabled={busy} whileHover={{ y: -1 }} whileTap={{ scale: 0.98 }}>
         {busy ? "Signing in…" : "Sign in"}
-      </button>
+      </motion.button>
     </form>
   );
 }

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import AnimatedSection, { StaggerContainer, StaggerItem } from "@/components/ui/AnimatedSection";
 import { supabaseAnon } from "@/lib/supabase/server";
 import { formatDate, initials, avatarStyle } from "@/lib/formatters";
 
@@ -45,7 +46,7 @@ export default async function BlogSection() {
 
     <section className="section" style={{ paddingTop: '60px' }}>
       <div className="container">
-        <div className="blog-filter reveal">
+        <AnimatedSection className="blog-filter reveal" variant="fadeIn">
           <button className="filter-btn active" data-cat="all">All</button>
           <button className="filter-btn" data-cat="technology">Technology</button>
           <button className="filter-btn" data-cat="ai">AI</button>
@@ -54,15 +55,16 @@ export default async function BlogSection() {
           <button className="filter-btn" data-cat="mobile">Mobile Apps</button>
           <button className="filter-btn" data-cat="automation">Automation</button>
           <button className="filter-btn" data-cat="startup">Startup Journey</button>
-        </div>
+        </AnimatedSection>
 
-        <div className="blog-grid reveal-stagger">
+        <StaggerContainer className="blog-grid reveal-stagger">
           {posts.length > 0 ? (
             posts.map((p) => {
               const cat = (p.category || "").toLowerCase();
-              const author = p.author || "Zivox Team";
+              const author = p.author || "Zivoxtech Team";
               return (
-                <Link key={p.id} className="blog-card" href={`/blog/${p.slug}`} data-cats={cat}>
+                <StaggerItem key={p.id}>
+                <Link className="blog-card" href={`/blog/${p.slug}`} data-cats={cat}>
                   <div className="blog-thumb">
                     {p.cover_image ? (
                       // eslint-disable-next-line @next/next/no-img-element
@@ -85,9 +87,11 @@ export default async function BlogSection() {
                     </div>
                   </div>
                 </Link>
+                </StaggerItem>
               );
             })
           ) : (
+            <StaggerItem>
             <Link className="blog-card" href="/blog/rag-support" data-cats="ai">
               <div className="blog-thumb"><div className="glyph blue">A</div></div>
               <div className="blog-body">
@@ -97,14 +101,15 @@ export default async function BlogSection() {
                 <div className="blog-author"><div className="avatar" style={{ background: 'linear-gradient(135deg, #f59e0b, #b45309)' }}>LF</div><span>Léa Fournier</span></div>
               </div>
             </Link>
+            </StaggerItem>
           )}
-        </div>
+        </StaggerContainer>
       </div>
     </section>
 
     <section className="section" style={{ paddingTop: '60px' }}>
       <div className="container">
-        <div className="cta-box reveal">
+        <AnimatedSection className="cta-box reveal" variant="scaleUp">
           <h2>Get monthly notes from our team. <span className="serif-italic">No fluff.</span></h2>
           <p>One email a month, with our most-read posts and an occasional behind-the-scenes look. Unsubscribe anytime.</p>
           <form className="newsletter" style={{ maxWidth: '360px', margin: '0 auto', borderRadius: '12px' }}>
@@ -113,7 +118,7 @@ export default async function BlogSection() {
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg>
             </button>
           </form>
-        </div>
+        </AnimatedSection>
       </div>
     </section>
     </section>
