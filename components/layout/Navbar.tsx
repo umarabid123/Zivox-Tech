@@ -4,7 +4,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { useScroll, useMotionValueEvent, motion } from "framer-motion";
 import { useState } from "react";
-import logo from "../../app/assets/images/zivoxtech.png";
+import logoLight from "../../app/assets/images/zivoxtech.png";
+import logoDark from "../../app/assets/images/zivoxtech-white.png";
 
 const springTransition = { duration: 0.65, ease: [0.22, 1, 0.36, 1] } as const;
 const bgTransition = { duration: 0.85, ease: [0.22, 1, 0.36, 1] } as const;
@@ -74,7 +75,8 @@ export default function Navbar() {
           aria-label="Zivoxtech home"
           style={{ position: "relative", zIndex: 1 }}
         >
-          <Image src={logo} alt="Zivox Tech Logo" style={{ height: "42px", width: "auto" }} />
+          <Image src={logoLight} alt="Zivox Tech Logo" className="logo-light" style={{ height: "42px", width: "auto" }} priority />
+          <Image src={logoDark} alt="Zivox Tech Logo" className="logo-dark" style={{ height: "42px", width: "auto" }} priority />
         </Link>
 
         <nav aria-label="Primary" style={{ position: "relative", zIndex: 1 }}>

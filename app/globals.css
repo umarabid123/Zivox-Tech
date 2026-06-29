@@ -3,3 +3,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html[data-theme='dark'] .logo-light {
+  display: none !important;
+}
+
+html[data-theme='light'] .logo-dark {
+  display: none !important;
+}
