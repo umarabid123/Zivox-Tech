@@ -156,6 +156,7 @@ alter table public.services            enable row level security;
 alter table public.testimonials        enable row level security;
 alter table public.contact_submissions enable row level security;
 alter table public.booking_submissions enable row level security;
+alter table public.admin_users         enable row level security;
 
 -- Public read of published rows
 drop policy if exists "public read blog"        on public.blog_posts;
@@ -184,10 +185,10 @@ create policy "anyone insert booking" on public.booking_submissions for insert w
 --   public: YES
 -- Or run:
 insert into storage.buckets (id, name, public)
-values ('nexvora-media', 'nexvora-media', true)
+values ('zivox-media', 'zivox-media', true)
 on conflict (id) do nothing;
 
 -- Allow public to read bucket files
 drop policy if exists "public read media" on storage.objects;
 create policy "public read media" on storage.objects for select
-  using (bucket_id = 'nexvora-media');
+  using (bucket_id = 'zivox-media');

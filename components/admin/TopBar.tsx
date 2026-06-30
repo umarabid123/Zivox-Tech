@@ -96,14 +96,6 @@ export default function TopBar({ title, email }: { title: string; email: string 
                 transition={{ duration: 0.18 }}
                 role="menu"
               >
-                <Link href="/admin/profile" role="menuitem" onClick={() => setOpen(false)}>
-                  <UserCircle size={16} />
-                  My Account
-                </Link>
-                <Link href="/admin/profile" role="menuitem" onClick={() => setOpen(false)}>
-                  <User size={16} />
-                  Profile
-                </Link>
                 <button type="button" onClick={logout} role="menuitem">
                   <LogOut size={16} />
                   Logout
