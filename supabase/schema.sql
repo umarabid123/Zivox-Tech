@@ -156,7 +156,6 @@ alter table public.services            enable row level security;
 alter table public.testimonials        enable row level security;
 alter table public.contact_submissions enable row level security;
 alter table public.booking_submissions enable row level security;
-alter table public.admin_users         enable row level security;
 
 -- Public read of published rows
 drop policy if exists "public read blog"        on public.blog_posts;
@@ -181,7 +180,7 @@ create policy "anyone insert booking" on public.booking_submissions for insert w
 -- Storage bucket
 -- =========================================================
 -- Manual step (one-time): in Supabase Dashboard -> Storage -> New bucket
---   name:   nexvora-media
+--   name:   zivox-media
 --   public: YES
 -- Or run:
 insert into storage.buckets (id, name, public)

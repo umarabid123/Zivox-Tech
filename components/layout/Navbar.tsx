@@ -24,11 +24,11 @@ export default function Navbar() {
       className={`nav${scrolled ? " scrolled" : ""}`}
       role="banner"
       initial={false}
-      style={{ left: "50%", x: "-50%" }}
+      style={{ left: "50%", x: "-50%", maxWidth: scrolled ? "100%" : "var(--container)" }}
       animate={
         scrolled
           ? { width: "100%", top: 0 }
-          : { width: "80%", top: 14 }
+          : { width: "calc(100% - 2 * var(--pad))", top: 14 }
       }
       transition={springTransition}
     >

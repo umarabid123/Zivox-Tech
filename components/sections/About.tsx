@@ -159,8 +159,8 @@ export default function AboutSection() {
       </div>
     </section>
 
-
-    <section className="section" style={{ paddingTop: '40px' }}>
+    {/* zivoxtech company history add later if needed */}
+    {/* <section className="section" style={{ paddingTop: '40px' }}>
       <div className="container">
         <AnimatedSection as="header" className="section-header center reveal" variant="fadeUp">
           <div className="section-eyebrow">Milestones</div>
@@ -204,7 +204,7 @@ export default function AboutSection() {
           </StaggerItem>
         </StaggerContainer>
       </div>
-    </section>
+    </section> */}
 
 
     <section className="section" style={{ paddingTop: '40px' }}>
