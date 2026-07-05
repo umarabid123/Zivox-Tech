@@ -1,53 +1,225 @@
 "use client";
 
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import AnimatedSection, { StaggerContainer, StaggerItem } from "@/components/ui/AnimatedSection";
+import HeroOrbital from "@/components/ui/HeroOrbital";
+import { motion } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+
+const SERVICES = [
+  {
+    title: "Web Solutions",
+    description: "Marketing sites, dashboards, customer portals and e-commerce — fast, accessible, and built to convert.",
+    tags: ["Next.js", "Dashboards", "E-commerce", "Portals"],
+    href: "/services",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="2" y="3" width="20" height="14" rx="2"></rect><line x1="2" y1="9" x2="22" y2="9"></line><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line>
+      </svg>
+    )
+  },
+  {
+    title: "Mobile App Development",
+    description: "Native and cross-platform mobile experiences for iOS and Android — designed for daily use and built to perform.",
+    tags: ["React Native", "Flutter", "iOS", "Android"],
+    href: "/services",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="5" y="2" width="14" height="20" rx="2"></rect><line x1="12" y1="18" x2="12" y2="18.01"></line>
+      </svg>
+    )
+  },
+  {
+    title: "AI Solutions",
+    description: "Smart chatbots, intelligent automations, and AI assistants that handle support, sales and operations — 24/7.",
+    tags: ["Chatbots", "RAG", "Automation", "Assistants"],
+    href: "/services",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"></path>
+      </svg>
+    )
+  },
+  {
+    title: "Custom Software",
+    description: "Tailor-built CRMs, booking engines and internal tools — engineered for your exact operations, not a generic template.",
+    tags: ["CRM", "Booking", "Internal tools", "SaaS"],
+    href: "/services",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M4 7l8-4 8 4M4 7v10l8 4 8-4V7M4 7l8 4 8-4M12 11v10"></path>
+      </svg>
+    )
+  },
+  {
+    title: "Modern Solutions",
+    description: "Built with the latest technologies and industry best practices.",
+    tags: ["Modern", "Tech Stack", "Performance"],
+    href: "/services",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+      </svg>
+    )
+  },
+  {
+    title: "Startup Focused",
+    description: "Flexible and affordable solutions designed for growing startups.",
+    tags: ["Flexibility", "Affordable", "Startups"],
+    href: "/services",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/>
+      </svg>
+    )
+  },
+  {
+    title: "Quality Assured",
+    description: "Clean, scalable and secure code on every project we ship.",
+    tags: ["Secure", "Clean Code", "Scalable"],
+    href: "/services",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+        <polyline points="20 6 9 17 4 12"/>
+      </svg>
+    )
+  },
+  {
+    title: "End-to-End Support",
+    description: "From the first idea to launch day and beyond — we're with you.",
+    tags: ["Support", "Launch", "Partnership"],
+    href: "/services",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+      </svg>
+    )
+  }
+];
 
 export default function HomeSection() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(true);
+  const [visibleCount, setVisibleCount] = useState(3);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [containerWidth, setContainerWidth] = useState(0);
+
+  const totalItems = SERVICES.length;
+  const extendedServices = [...SERVICES, ...SERVICES.slice(0, 3)];
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+    const handleResize = () => {
+      setContainerWidth(containerRef.current?.offsetWidth || 0);
+      if (window.innerWidth >= 1024) {
+        setVisibleCount(3);
+      } else if (window.innerWidth >= 768) {
+        setVisibleCount(2);
+      } else {
+        setVisibleCount(1);
+      }
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const handleNext = () => {
+    setIsTransitioning(true);
+    setCurrentIndex((prev) => {
+      const nextVal = prev + visibleCount;
+      return nextVal >= totalItems ? totalItems : nextVal;
+    });
+  };
+
+  const handlePrev = () => {
+    setIsTransitioning(true);
+    setCurrentIndex((prev) => {
+      if (prev === 0) {
+        return totalItems % visibleCount === 0 
+          ? totalItems - visibleCount 
+          : totalItems - (totalItems % visibleCount);
+      }
+      const nextVal = prev - visibleCount;
+      return nextVal < 0 ? 0 : nextVal;
+    });
+  };
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      handleNext();
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [visibleCount]);
+
+  useEffect(() => {
+    if (currentIndex >= totalItems) {
+      const timeout = setTimeout(() => {
+        setIsTransitioning(false);
+        setCurrentIndex(0);
+      }, 500);
+      return () => clearTimeout(timeout);
+    } else if (currentIndex === 0) {
+      setIsTransitioning(true);
+    }
+  }, [currentIndex, totalItems]);
+
+  const handleDragEnd = (event: any, info: any) => {
+    const swipeThreshold = 50;
+    if (info.offset.x < -swipeThreshold) {
+      handleNext();
+    } else if (info.offset.x > swipeThreshold) {
+      handlePrev();
+    }
+  };
+
   return (
     <section className="page active" data-page="home">
 
       <section id="home" className="hero">
-        <div className="hero-aurora" aria-hidden="true"></div>
+        {/* Background gradient blur layer */}
+        <div className="hero-bg-blurred" />
 
-        {/* Big brand-name carousel — background layer */}
-        <div className="brand-carousel" aria-hidden="true">
+        {/* Animated background marquee */}
+        <div className="brand-carousel">
           <div className="brand-carousel-track">
-            <span className="bc-word">Zivoxtech</span>
+            <span className="bc-word">ZIVOX TECH</span>
             <span className="bc-star">★</span>
-            <span className="bc-word bc-word--outline">Zivoxtech</span>
+            <span className="bc-word bc-word--outline">ZIVOX TECH</span>
             <span className="bc-star">★</span>
-            <span className="bc-word">Zivoxtech</span>
+            <span className="bc-word">ZIVOX TECH</span>
             <span className="bc-star">★</span>
-            <span className="bc-word bc-word--outline">Zivoxtech</span>
+            <span className="bc-word bc-word--outline">ZIVOX TECH</span>
             <span className="bc-star">★</span>
-            {/* duplicate set for seamless loop */}
-            <span className="bc-word">Zivoxtech</span>
+            <span className="bc-word">ZIVOX TECH</span>
             <span className="bc-star">★</span>
-            <span className="bc-word bc-word--outline">Zivoxtech</span>
+            <span className="bc-word bc-word--outline">ZIVOX TECH</span>
             <span className="bc-star">★</span>
-            <span className="bc-word">Zivoxtech</span>
+            <span className="bc-word">ZIVOX TECH</span>
             <span className="bc-star">★</span>
-            <span className="bc-word bc-word--outline">Zivoxtech</span>
+            <span className="bc-word bc-word--outline">ZIVOX TECH</span>
             <span className="bc-star">★</span>
           </div>
         </div>
 
-        <div className="container">
-          <div className="hero-grid hero-grid--centered">
+        <div className="hero-wide-container">
+          <div className="hero-grid hero-grid--two-col">
+            {/* LEFT: text content */}
             <StaggerContainer className="hero-text reveal">
               <StaggerItem>
                 <span className="eyebrow"><span className="dot"></span> Design · Build · Launch</span>
               </StaggerItem>
               <StaggerItem>
                 <h1>
-                  We build things<br />
-                  people actually <span className="serif-italic">use.</span>
+                  We build software<br />
+                  that <span className="serif-italic">Grows</span><br />
+                  your business.
                 </h1>
               </StaggerItem>
               <StaggerItem>
                 <p className="lead">
-                  Websites, mobile apps, and custom software — crafted with care for startups and growing businesses that want to stand out.
+                  We design and develop modern websites, AI solutions, mobile apps, and custom software that help startups and businesses grow with confidence.
                 </p>
               </StaggerItem>
               <StaggerItem>
@@ -56,111 +228,113 @@ export default function HomeSection() {
                     Start Your Project
                     <span className="arrow" aria-hidden="true">→</span>
                   </Link>
-                  <Link className="btn btn-ghost btn-lg" href="/book">
-                    Book Consultation
+                  <Link className="btn btn-ghost btn-lg" href="/portfolio">
+                    View Our Work <span className="arrow">→</span>
                   </Link>
                 </div>
               </StaggerItem>
-              <StaggerItem>
-                <div className="hero-stats">
-                  <div>
-                    <div className="stat-num"><span className="counter" data-counter="120">0</span><span style={{ color: 'var(--accent-2)' }}>+</span></div>
-                    <div className="stat-label">Projects delivered</div>
-                  </div>
-                  <div>
-                    <div className="stat-num"><span className="counter" data-counter="80">0</span><span style={{ color: 'var(--accent-2)' }}>+</span></div>
-                    <div className="stat-label">Happy clients</div>
-                  </div>
-                  <div>
-                    <div className="stat-num"><span className="counter" data-counter="98">0</span><span style={{ color: 'var(--accent-2)' }}>%</span></div>
-                    <div className="stat-label">Satisfaction rate</div>
-                  </div>
-                </div>
-              </StaggerItem>
             </StaggerContainer>
+
+            {/* RIGHT: Framer Motion orbital diagram */}
+            <HeroOrbital />
           </div>
         </div>
       </section>
 
-      {/* // slider for companys we work with -- add this later */}
-      {/* <section className="trusted" aria-label="Trusted by leading teams">
-      <div className="container">
-        <AnimatedSection variant="fadeIn" threshold={0.2}>
-          <div className="trusted-label">Trusted by ambitious teams from seed to series B</div>
-        </AnimatedSection>
-        <div className="marquee">
-          <div className="marquee-track">
-            <span className="logo">◆ Lumen</span>
-            <span className="logo">⌬ Helix Labs</span>
-            <span className="logo">▲ Northpeak</span>
-            <span className="logo">◐ Orbital</span>
-            <span className="logo">✦ Vantage</span>
-            <span className="logo">◇ Quill Studio</span>
-            <span className="logo">⬡ Forge</span>
-            <span className="logo">∎ Aurora</span>
-            <span className="logo">◈ Cinder</span>
-        
-            <span className="logo" aria-hidden="true">◆ Lumen</span>
-            <span className="logo" aria-hidden="true">⌬ Helix Labs</span>
-            <span className="logo" aria-hidden="true">▲ Northpeak</span>
-            <span className="logo" aria-hidden="true">◐ Orbital</span>
-            <span className="logo" aria-hidden="true">✦ Vantage</span>
-            <span className="logo" aria-hidden="true">◇ Quill Studio</span>
-            <span className="logo" aria-hidden="true">⬡ Forge</span>
-            <span className="logo" aria-hidden="true">∎ Aurora</span>
-            <span className="logo" aria-hidden="true">◈ Cinder</span>
-          </div>
-        </div>
-      </div>
-    </section> */}
-
-
+      {/* ── Services Carousel Section ── */}
       <section id="services" className="section">
         <div className="container">
-          <AnimatedSection as="header" className="section-header reveal" variant="fadeUp">
+          <header className="section-header">
             <div className="section-eyebrow">Services</div>
             <h2 className="section-title">Everything you need to <span className="serif-italic">ship</span> &amp; scale.</h2>
             <p className="section-sub">From first wireframe to production deployment — we cover the full surface area of modern software products.</p>
-          </AnimatedSection>
+          </header>
 
-          <StaggerContainer className="services-grid reveal-stagger">
-            <StaggerItem>
-              <article className="service-card">
-                <div className="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"></rect><line x1="2" y1="9" x2="22" y2="9"></line><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg></div>
-                <h3>Web Solutions</h3>
-                <p>Marketing sites, dashboards, customer portals and e-commerce — fast, accessible, and built to convert.</p>
-                <div className="tag-row"><span className="tag">Next.js</span><span className="tag">Dashboards</span><span className="tag">E-commerce</span><span className="tag">Portals</span></div>
-                <Link className="learn-more" href="/services">Learn more</Link>
-              </article>
-            </StaggerItem>
-            <StaggerItem>
-              <article className="service-card">
-                <div className="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"></rect><line x1="12" y1="18" x2="12" y2="18.01"></line></svg></div>
-                <h3>Mobile App Development</h3>
-                <p>Native and cross-platform mobile experiences for iOS and Android — designed for daily use and built to perform.</p>
-                <div className="tag-row"><span className="tag">React Native</span><span className="tag">Flutter</span><span className="tag">iOS</span><span className="tag">Android</span></div>
-                <Link className="learn-more" href="/services">Learn more</Link>
-              </article>
-            </StaggerItem>
-            <StaggerItem>
-              <article className="service-card">
-                <div className="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"></path></svg></div>
-                <h3>AI Solutions</h3>
-                <p>Smart chatbots, intelligent automations, and AI assistants that handle support, sales and operations — 24/7.</p>
-                <div className="tag-row"><span className="tag">Chatbots</span><span className="tag">RAG</span><span className="tag">Automation</span><span className="tag">Assistants</span></div>
-                <Link className="learn-more" href="/services">Learn more</Link>
-              </article>
-            </StaggerItem>
-            <StaggerItem>
-              <article className="service-card">
-                <div className="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M4 7l8-4 8 4M4 7v10l8 4 8-4V7M4 7l8 4 8-4M12 11v10"></path></svg></div>
-                <h3>Custom Software</h3>
-                <p>Tailor-built CRMs, booking engines and internal tools — engineered for your exact operations, not a generic template.</p>
-                <div className="tag-row"><span className="tag">CRM</span><span className="tag">Booking</span><span className="tag">Internal tools</span><span className="tag">SaaS</span></div>
-                <Link className="learn-more" href="/services">Learn more</Link>
-              </article>
-            </StaggerItem>
-          </StaggerContainer>
+          <div className="services-carousel-container" style={{ position: "relative" }}>
+            <button
+              className="carousel-arrow carousel-arrow--left"
+              onClick={handlePrev}
+              aria-label="Previous slide"
+            >
+              <ChevronLeft size={20} />
+            </button>
+
+            <button
+              className="carousel-arrow carousel-arrow--right"
+              onClick={handleNext}
+              aria-label="Next slide"
+            >
+              <ChevronRight size={20} />
+            </button>
+
+            <div className="services-carousel-wrapper" ref={containerRef}>
+              <motion.div
+                className="services-carousel-track"
+                drag="x"
+                dragConstraints={containerRef}
+                dragElastic={0.2}
+                onDragEnd={handleDragEnd}
+                animate={{
+                  x: `-${currentIndex * (100 / visibleCount)}%`,
+                }}
+                transition={
+                  isTransitioning
+                    ? { type: "spring", stiffness: 120, damping: 20 }
+                    : { duration: 0 }
+                }
+              >
+              {extendedServices.map((service, idx) => (
+                <div
+                  key={idx}
+                  className="services-carousel-item"
+                  style={{
+                    flex: `0 0 ${100 / visibleCount}%`,
+                    width: `${100 / visibleCount}%`,
+                  }}
+                >
+                  <motion.article 
+                    className="service-card"
+                    whileHover={{ 
+                      y: -8,
+                      scale: 1.015,
+                      boxShadow: "0 20px 40px -15px rgba(59,130,246,0.25)",
+                      borderColor: "rgba(59, 130, 246, 0.45)"
+                    }}
+                    transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                  >
+                    <div className="service-icon">{service.icon}</div>
+                    <h3>{service.title}</h3>
+                    <p>{service.description}</p>
+                    <div className="tag-row">
+                      {service.tags.map((tag) => (
+                        <span key={tag} className="tag">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    <Link className="learn-more" href={service.href}>
+                      Learn more
+                    </Link>
+                  </motion.article>
+                </div>
+              ))}
+              </motion.div>
+            </div>
+          </div>
+
+          <div className="services-carousel-dots">
+            {SERVICES.map((_, idx) => (
+              <button
+                key={idx}
+                className={`carousel-dot ${currentIndex % totalItems === idx ? "active" : ""}`}
+                onClick={() => {
+                  setIsTransitioning(true);
+                  setCurrentIndex(idx);
+                }}
+                aria-label={`Go to slide ${idx + 1}`}
+              />
+            ))}
+          </div>
         </div>
       </section>
 
