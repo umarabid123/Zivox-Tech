@@ -4,8 +4,14 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import AnimatedSection, { StaggerContainer, StaggerItem } from "@/components/ui/AnimatedSection";
 import HeroOrbital from "@/components/ui/HeroOrbital";
+import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+
+const HeroScene = dynamic(() => import("@/components/ui/HeroScene"), {
+  ssr: false,
+  loading: () => <div style={{ height: "450px", width: "100%", background: "transparent" }} />
+});
 
 const SERVICES = [
   {
@@ -236,7 +242,7 @@ export default function HomeSection() {
             </StaggerContainer>
 
             {/* RIGHT: Framer Motion orbital diagram */}
-            <HeroOrbital />
+            <HeroScene />
           </div>
         </div>
       </section>
@@ -384,11 +390,8 @@ export default function HomeSection() {
               </div>
             </AnimatedSection>
 
-            <AnimatedSection className="reveal" variant="scaleUp" delay={0.15}>
-              <div className="code-block">
-                <div className="code-head"><div className="traffic"><span></span><span></span><span></span></div><span>~/zivoxtech/values.ts</span></div>
-                <pre className="code-body"><span className="gutter">1</span><span className="kw">const</span> <span className="key">zivoxtech</span> = &#123;{"\n"}<span className="gutter">2</span>  <span className="key">mission</span>: <span className="str">&quot;build software that ships&quot;</span>,{"\n"}<span className="gutter">3</span>  <span className="key">approach</span>: [{"\n"}<span className="gutter">4</span>    <span className="str">&quot;design before code&quot;</span>,{"\n"}<span className="gutter">5</span>    <span className="str">&quot;weekly demos&quot;</span>,{"\n"}<span className="gutter">6</span>    <span className="str">&quot;no surprises&quot;</span>,{"\n"}<span className="gutter">7</span>  ],{"\n"}<span className="gutter">8</span>  <span className="key">stack</span>: &#123;{"\n"}<span className="gutter">9</span>    <span className="key">web</span>: <span className="str">&quot;Next.js · TypeScript&quot;</span>,{"\n"}<span className="gutter">10</span>    <span className="key">mobile</span>: <span className="str">&quot;React Native · Flutter&quot;</span>,{"\n"}<span className="gutter">11</span>    <span className="key">ai</span>: <span className="str">&quot;OpenAI · RAG · vector DBs&quot;</span>,{"\n"}<span className="gutter">12</span>  &#125;,{"\n"}<span className="gutter">13</span>  <span className="key">delivery</span>: <span className="num">4</span><span className="kw">..</span><span className="num">12</span><span className="kw"> as</span> <span className="key">weeks</span>,{"\n"}<span className="gutter">14</span>  <span className="comment">// ↓ what clients actually get</span>{"\n"}<span className="gutter">15</span>  <span className="key">outcomes</span>: <span className="fn">deliver</span>(&#123;{"\n"}<span className="gutter">16</span>    <span className="key">quality</span>: <span className="str">&quot;production-grade&quot;</span>,{"\n"}<span className="gutter">17</span>    <span className="key">timeline</span>: <span className="str">&quot;on schedule&quot;</span>,{"\n"}<span className="gutter">18</span>    <span className="key">support</span>: <span className="str">&quot;post-launch, always&quot;</span>,{"\n"}<span className="gutter">19</span>  &#125;),{"\n"}<span className="gutter">20</span>&#125;;</pre>
-              </div>
+            <AnimatedSection className="reveal" variant="scaleUp" delay={0.15} style={{ height: "100%", display: "flex", flexDirection: "column", justifyContent: "stretch", alignItems: "stretch" }}>
+              <HeroOrbital className="why-orbital" />
             </AnimatedSection>
           </div>
         </div>

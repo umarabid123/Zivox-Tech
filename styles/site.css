@@ -1075,7 +1075,7 @@ h3 {
   right: 50px;
   bottom: -10px;
   left: -10px;
-  background-image: url('/black-bg-zivixtech.png');
+  background-image: none;
   background-size: cover;
   background-position: center right;
   background-repeat: no-repeat;
@@ -1089,7 +1089,7 @@ h3 {
   right: 50px;
   bottom: -20px;
   left: -20px;
-  background-image: url('/black-bg-zivixtech.png');
+  background-image: none;
   background-size: cover;
   background-position: center right;
   background-repeat: no-repeat;
@@ -1106,11 +1106,11 @@ h3 {
 }
 
 [data-theme="light"] .hero::after {
-  background-image: url('/light-bg-zivoxtech.png');
+  background-image: none;
 }
 
 [data-theme="light"] .hero-bg-blurred {
-  background-image: url('/light-bg-zivoxtech.png');
+  background-image: none;
   filter: blur(15px);
 }
 
@@ -1390,6 +1390,11 @@ h3 {
   flex-shrink: 0;
   mix-blend-mode: screen;
   /* Blend entire orbital group with hero bg */
+}
+
+.why-orbital {
+  right: 0 !important;
+  margin: 0 auto;
 }
 
 /* Orbit rings */
@@ -2441,7 +2446,7 @@ h3 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: clamp(40px, 6vw, 80px);
-  align-items: center;
+  align-items: stretch;
 }
 
 /* let grid items shrink below their content's intrinsic width so the

@@ -63,7 +63,7 @@ const CARDS = [
 const ORBIT_RADIUS_PCT = 0.38;
 
 /* ─── Main orbital component ────────────────────────────── */
-export default function HeroOrbital() {
+export default function HeroOrbital({ className }: { className?: string }) {
   const angleRef = { current: 0 };
   const [paused, setPaused] = useState(false);
   const angles = CARDS.map((c) => useMotionValue(c.startAngle));
@@ -78,7 +78,7 @@ export default function HeroOrbital() {
 
   return (
     <div
-      className="hero-orbital-wrap"
+      className={`hero-orbital-wrap ${className || ""}`}
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
