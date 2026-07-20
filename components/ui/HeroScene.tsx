@@ -1,12 +1,12 @@
 "use client";
 
-import { useRef, useMemo } from "react";
+import { useRef, useMemo, useState, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Float, MeshDistortMaterial, Sphere, Line, Html } from "@react-three/drei";
 import * as THREE from "three";
 
 /** Animated AI sphere with neural-like distortion */
-function AISphere() {
+function AISphere({ theme }: { theme: "light" | "dark" }) {
   const meshRef = useRef<THREE.Mesh>(null!);
   const wireRef = useRef<THREE.Mesh>(null!);
 
@@ -38,21 +38,21 @@ function AISphere() {
           opacity={0.85}
         />
       </Sphere>
-      {/* Wireframe ring */}
+      {/* Wireframe ring - Middle circle */}
       <Sphere ref={wireRef} args={[1.95, 20, 20]}>
         <meshBasicMaterial
-          color="#00C8FF"
+          color={theme === "light" ? "#4B5563" : "#00C8FF"}
           wireframe
           transparent
-          opacity={0.12}
+          opacity={theme === "light" ? 0.30 : 0.22}
         />
       </Sphere>
     </Float>
   );
 }
 
-/** Orbit circle line helper */
-function OrbitCircle({ radius, color }: { radius: number; color: string }) {
+/** Orbit circle line helper (Outer Orbits) */
+function OrbitCircle({ radius, color, theme }: { radius: number; color: string; theme: "light" | "dark" }) {
   const points = useMemo(() => {
     const pts = [];
     for (let i = 0; i <= 64; i++) {
@@ -62,7 +62,7 @@ function OrbitCircle({ radius, color }: { radius: number; color: string }) {
     return pts;
   }, [radius]);
 
-  return <Line points={points} color={color} lineWidth={1.2} opacity={0.25} transparent />;
+  return <Line points={points} color={color} lineWidth={theme === "light" ? 1.6 : 1.2} opacity={theme === "light" ? 0.48 : 0.25} transparent depthTest={false} renderOrder={10} />;
 }
 
 /** Orbiting planet node with depth blur and fade */
@@ -106,9 +106,9 @@ function OrbitingNode({
 
   return (
     <group ref={ref}>
-      <mesh>
+      <mesh renderOrder={10}>
         <sphereGeometry args={[0.1, 16, 16]} />
-        <meshBasicMaterial color={color} />
+        <meshBasicMaterial color={color} depthTest={false} transparent />
       </mesh>
       <Html distanceFactor={8} position={[0, 0.22, 0]} center>
         <div
@@ -116,11 +116,11 @@ function OrbitingNode({
           style={{
             color: "white",
             background: "rgba(8, 10, 18, 0.85)",
-            padding: "2.5px 7px",
+            padding: "2px 6px",
             borderRadius: "9999px",
             border: `1px solid ${color}44`,
             whiteSpace: "nowrap",
-            fontSize: "9px",
+            fontSize: "8px",
             fontWeight: 500,
             fontFamily: "var(--font-sans, sans-serif)",
             boxShadow: "0 4px 15px rgba(0,0,0,0.6)",
@@ -214,10 +214,31 @@ function AmbientParticles({ count = 200 }: { count?: number }) {
 }
 
 export default function HeroScene() {
+  const [theme, setTheme] = useState<"light" | "dark">("dark");
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    
+    const initialTheme = document.documentElement.getAttribute("data-theme") === "light" ? "light" : "dark";
+    setTheme(initialTheme);
+
+    const observer = new MutationObserver(() => {
+      const currentTheme = document.documentElement.getAttribute("data-theme") === "light" ? "light" : "dark";
+      setTheme(currentTheme);
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["data-theme"],
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div style={{ width: "100%", height: "100%", minHeight: "550px", position: "relative", display: "flex", flex: 1 }}>
       <Canvas
-        camera={{ position: [0, 0, 6.2], fov: 50 }}
+        camera={{ position: [0, 0, 7.2], fov: 50 }}
         gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
         dpr={[1, 1.5]}
         style={{ background: "transparent", width: "100%", height: "100%" }}
@@ -228,39 +249,27 @@ export default function HeroScene() {
         <pointLight position={[0, 0, 4]} intensity={1.5} color="#00BFFF" distance={10} />
 
         <AmbientParticles count={160} />
-        <AISphere />
-        <ParticleRing radius={3.2} count={90} color="#00C8FF" speed={0.3} />
-        <ParticleRing radius={4.0} count={60} color="#3B82F6" speed={-0.2} />
+        <AISphere theme={theme} />
+        <ParticleRing radius={2.8} count={90} color="#00C8FF" speed={0.3} />
+        <ParticleRing radius={3.5} count={60} color="#3B82F6" speed={-0.2} />
 
         <group rotation={[0.35, 0, 0.15]}>
-          {/* Orbit 1: Web Application */}
+          {/* Orbit 1: POS and ERP System */}
           <group>
-            <OrbitCircle radius={2.2} color="#00C8FF" />
-            <OrbitingNode radius={2.2} speed={0.45} label="Web Application" color="#00C8FF" />
+            <OrbitCircle radius={2.0} color="#EC4899" theme={theme} />
+            <OrbitingNode radius={2.0} speed={0.45} label="POS and ERP System" color="#EC4899" />
           </group>
 
-          {/* Orbit 2: Android App Development */}
+          {/* Orbit 2: Android App */}
           <group>
-            <OrbitCircle radius={2.8} color="#3B82F6" />
-            <OrbitingNode radius={2.8} speed={0.37} label="Android App Development" color="#3B82F6" />
+            <OrbitCircle radius={2.4} color="#3B82F6" theme={theme} />
+            <OrbitingNode radius={2.4} speed={0.37} label="Android App" color="#3B82F6" />
           </group>
 
           {/* Orbit 3: Shopify Development */}
           <group>
-            <OrbitCircle radius={3.4} color="#7C3AED" />
-            <OrbitingNode radius={3.4} speed={0.29} label="Shopify Development" color="#7C3AED" />
-          </group>
-
-          {/* Orbit 4: POS and ERP System */}
-          <group>
-            <OrbitCircle radius={4.0} color="#EC4899" />
-            <OrbitingNode radius={4.0} speed={0.21} label="POS and ERP System" color="#EC4899" />
-          </group>
-
-          {/* Orbit 5: Custom Softwares */}
-          <group>
-            <OrbitCircle radius={4.6} color="#10B981" />
-            <OrbitingNode radius={4.6} speed={0.14} label="Custom Softwares" color="#10B981" />
+            <OrbitCircle radius={2.8} color="#7C3AED" theme={theme} />
+            <OrbitingNode radius={2.8} speed={0.29} label="Shopify Development" color="#7C3AED" />
           </group>
         </group>
       </Canvas>

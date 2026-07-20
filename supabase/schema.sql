@@ -35,6 +35,7 @@ create table if not exists public.portfolio_items (
   tags         text[] default '{}',
   published    boolean not null default true,
   sort_order   int not null default 0,
+  background_color text default '#10B981',
   created_at   timestamptz not null default now(),
   updated_at   timestamptz not null default now()
 );
@@ -191,3 +192,19 @@ on conflict (id) do nothing;
 drop policy if exists "public read media" on storage.objects;
 create policy "public read media" on storage.objects for select
   using (bucket_id = 'zivox-media');
+
+-- Allow public to upload bucket files (insert objects)
+drop policy if exists "public insert media" on storage.objects;
+create policy "public insert media" on storage.objects for insert
+  with check (bucket_id = 'zivox-media');
+
+-- Allow public to update bucket files
+drop policy if exists "public update media" on storage.objects;
+create policy "public update media" on storage.objects for update
+  using (bucket_id = 'zivox-media');
+
+-- Allow public to delete bucket files
+drop policy if exists "public delete media" on storage.objects;
+create policy "public delete media" on storage.objects for delete
+  using (bucket_id = 'zivox-media');
+
