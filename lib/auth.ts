@@ -65,10 +65,25 @@ export async function getAdminUserByEmail(email: string): Promise<AdminUser | nu
 
 export async function ensureAdminUser(): Promise<AdminUser> {
   const email = env.adminEmail().trim().toLowerCase();
+  const password = env.adminPassword();
   const existing = await getAdminUserByEmail(email);
-  if (existing) return existing;
 
-  const passwordHash = await bcrypt.hash(env.adminPassword(), 12);
+  if (existing) {
+    // If the database password hash doesn't match the config password, update it
+    const ok = await bcrypt.compare(password, existing.password_hash);
+    if (!ok) {
+      const nextHash = await bcrypt.hash(password, 12);
+      const { error } = await supabaseService()
+        .from(ADMIN_TABLE)
+        .update({ password_hash: nextHash })
+        .eq("email", email);
+      if (error) throw new Error(error.message);
+      existing.password_hash = nextHash;
+    }
+    return existing;
+  }
+
+  const passwordHash = await bcrypt.hash(password, 12);
   const row = {
     email,
     full_name: "ZIVOXTech Admin",

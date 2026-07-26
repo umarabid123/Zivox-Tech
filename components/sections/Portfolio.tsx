@@ -60,7 +60,7 @@ export default async function PortfolioSection() {
                 .filter(Boolean)
                 .map((s) => String(s).toLowerCase())
                 .join(",");
-              const href = it.link || (it.slug ? `/portfolio/${it.slug}` : "/portfolio");
+              const href = it.slug ? `/portfolio/${it.slug}` : (it.link || "/portfolio");
               const featured = idx === 0 || idx === 5;
               return (
                 <StaggerItem key={it.id}>

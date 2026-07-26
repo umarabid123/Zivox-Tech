@@ -65,21 +65,19 @@ export default function LoginForm() {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          <motion.button
+          <button
             type="button"
             className="a-icon-btn"
             onClick={() => setShowPassword((value) => !value)}
-            whileHover={{ scale: 1.04 }}
-            whileTap={{ scale: 0.96 }}
             aria-label={showPassword ? "Hide password" : "Show password"}
           >
             {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
-          </motion.button>
+          </button>
         </div>
       </div>
-      <motion.button className="a-btn" type="submit" disabled={busy} whileHover={{ y: -1 }} whileTap={{ scale: 0.98 }}>
+      <button className="a-btn" type="submit" disabled={busy}>
         {busy ? "Signing in…" : "Sign in"}
-      </motion.button>
+      </button>
     </form>
   );
 }

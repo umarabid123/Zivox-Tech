@@ -4,8 +4,15 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import AnimatedSection, { StaggerContainer, StaggerItem } from "@/components/ui/AnimatedSection";
 import HeroOrbital from "@/components/ui/HeroOrbital";
+import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import FeaturedProjectsClient from "./FeaturedProjectsClient";
+
+const HeroScene = dynamic(() => import("@/components/ui/HeroScene"), {
+  ssr: false,
+  loading: () => <div style={{ height: "450px", width: "100%", background: "transparent" }} />
+});
 
 const SERVICES = [
   {
@@ -98,7 +105,25 @@ const SERVICES = [
   }
 ];
 
-export default function HomeSection() {
+type Project = {
+  id: string;
+  title: string;
+  slug: string | null;
+  short_description: string | null;
+  description: string | null;
+  poster_url: string | null;
+  cover_image: string | null;
+  technologies: string[] | null;
+  tags: string[] | null;
+  project_url: string | null;
+  link: string | null;
+  github_url: string | null;
+  featured: boolean | null;
+  status: string | null;
+  display_order: number | null;
+};
+
+export default function HomeSection({ featuredProjects = [] }: { featuredProjects?: Project[] }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(true);
   const [visibleCount, setVisibleCount] = useState(3);
@@ -236,7 +261,7 @@ export default function HomeSection() {
             </StaggerContainer>
 
             {/* RIGHT: Framer Motion orbital diagram */}
-            <HeroOrbital />
+            <HeroScene />
           </div>
         </div>
       </section>
@@ -339,26 +364,12 @@ export default function HomeSection() {
       </section>
 
 
-      <section id="solutions" className="section" style={{ paddingTop: '0' }}>
-        <div className="container">
-          <AnimatedSection as="header" className="section-header reveal" variant="fadeUp">
-            <div className="section-eyebrow">Solutions</div>
-            <h2 className="section-title">Industry solutions, <span className="serif-italic">built to fit.</span></h2>
-            <p className="section-sub">Patterns we&apos;ve shipped across industries — adapted to your stack, branding, and workflows.</p>
-          </AnimatedSection>
-          <StaggerContainer className="solutions-grid reveal-stagger">
-            <StaggerItem><article className="solution-card"><div className="sol-head"><span className="sol-num">/ 01</span><span className="sol-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg></span></div><h3>Education Platforms</h3><p>Course portals, LMS systems, interactive learning experiences and student dashboards.</p></article></StaggerItem>
-            <StaggerItem><article className="solution-card"><div className="sol-head"><span className="sol-num">/ 02</span><span className="sol-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg></span></div><h3>Healthcare Systems</h3><p>Patient portals, appointment management, HIPAA-mindful records and tele-health flows.</p></article></StaggerItem>
-            <StaggerItem><article className="solution-card"><div className="sol-head"><span className="sol-num">/ 03</span><span className="sol-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg></span></div><h3>Business Automation</h3><p>Workflow engines that connect tools, eliminate manual work and ship reports nightly.</p></article></StaggerItem>
-            <StaggerItem><article className="solution-card"><div className="sol-head"><span className="sol-num">/ 04</span><span className="sol-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg></span></div><h3>Booking Systems</h3><p>Calendars, slots, payments, reminders — for clinics, studios, restaurants and consultancies.</p></article></StaggerItem>
-            <StaggerItem><article className="solution-card"><div className="sol-head"><span className="sol-num">/ 05</span><span className="sol-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg></span></div><h3>Management Systems</h3><p>Internal admin panels — inventory, staff, orders, projects — fully role-aware and audited.</p></article></StaggerItem>
-            <StaggerItem><article className="solution-card"><div className="sol-head"><span className="sol-num">/ 06</span><span className="sol-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M5 12h14M13 5l7 7-7 7"></path></svg></span></div><h3>AI Support &amp; Sales</h3><p>RAG-powered assistants trained on your docs that answer, qualify and route in real-time.</p></article></StaggerItem>
-          </StaggerContainer>
-        </div>
+      {/* ── Featured Projects ── */}
+      <section id="solutions" className="section" style={{ padding: '0' }}>
+        <FeaturedProjectsClient projects={featuredProjects} compact={true} />
       </section>
 
-
-      <section id="about" className="section" style={{ paddingTop: '40px' }}>
+      <section id="about" className="section" style={{ paddingTop: '20px' }}>
         <div className="container">
           <div className="why-grid">
             <AnimatedSection className="reveal" variant="fadeUp">
@@ -384,11 +395,8 @@ export default function HomeSection() {
               </div>
             </AnimatedSection>
 
-            <AnimatedSection className="reveal" variant="scaleUp" delay={0.15}>
-              <div className="code-block">
-                <div className="code-head"><div className="traffic"><span></span><span></span><span></span></div><span>~/zivoxtech/values.ts</span></div>
-                <pre className="code-body"><span className="gutter">1</span><span className="kw">const</span> <span className="key">zivoxtech</span> = &#123;{"\n"}<span className="gutter">2</span>  <span className="key">mission</span>: <span className="str">&quot;build software that ships&quot;</span>,{"\n"}<span className="gutter">3</span>  <span className="key">approach</span>: [{"\n"}<span className="gutter">4</span>    <span className="str">&quot;design before code&quot;</span>,{"\n"}<span className="gutter">5</span>    <span className="str">&quot;weekly demos&quot;</span>,{"\n"}<span className="gutter">6</span>    <span className="str">&quot;no surprises&quot;</span>,{"\n"}<span className="gutter">7</span>  ],{"\n"}<span className="gutter">8</span>  <span className="key">stack</span>: &#123;{"\n"}<span className="gutter">9</span>    <span className="key">web</span>: <span className="str">&quot;Next.js · TypeScript&quot;</span>,{"\n"}<span className="gutter">10</span>    <span className="key">mobile</span>: <span className="str">&quot;React Native · Flutter&quot;</span>,{"\n"}<span className="gutter">11</span>    <span className="key">ai</span>: <span className="str">&quot;OpenAI · RAG · vector DBs&quot;</span>,{"\n"}<span className="gutter">12</span>  &#125;,{"\n"}<span className="gutter">13</span>  <span className="key">delivery</span>: <span className="num">4</span><span className="kw">..</span><span className="num">12</span><span className="kw"> as</span> <span className="key">weeks</span>,{"\n"}<span className="gutter">14</span>  <span className="comment">// ↓ what clients actually get</span>{"\n"}<span className="gutter">15</span>  <span className="key">outcomes</span>: <span className="fn">deliver</span>(&#123;{"\n"}<span className="gutter">16</span>    <span className="key">quality</span>: <span className="str">&quot;production-grade&quot;</span>,{"\n"}<span className="gutter">17</span>    <span className="key">timeline</span>: <span className="str">&quot;on schedule&quot;</span>,{"\n"}<span className="gutter">18</span>    <span className="key">support</span>: <span className="str">&quot;post-launch, always&quot;</span>,{"\n"}<span className="gutter">19</span>  &#125;),{"\n"}<span className="gutter">20</span>&#125;;</pre>
-              </div>
+            <AnimatedSection className="reveal" variant="scaleUp" delay={0.15} style={{ height: "100%", display: "flex", flexDirection: "column", justifyContent: "stretch", alignItems: "stretch" }}>
+              <HeroOrbital className="why-orbital" />
             </AnimatedSection>
           </div>
         </div>
@@ -397,10 +405,10 @@ export default function HomeSection() {
 
       <section className="section process" style={{ paddingTop: '40px' }}>
         <div className="container">
-          <AnimatedSection as="header" className="section-header reveal" variant="fadeUp" style={{ textAlign: 'center', maxWidth: '720px', marginLeft: 'auto', marginRight: 'auto' }}>
-            <div className="section-eyebrow" style={{ justifyContent: 'center' }}>Process</div>
-            <h2 className="section-title" style={{ margin: '0 auto' }}>A simple, four-step <span className="serif-italic">cadence.</span></h2>
-            <p className="section-sub" style={{ marginLeft: 'auto', marginRight: 'auto' }}>From first call to launch day — predictable milestones, weekly progress, no black boxes.</p>
+          <AnimatedSection as="header" className="section-header reveal" variant="fadeUp">
+            <div className="section-eyebrow">Process</div>
+            <h2 className="section-title">A simple, four-step <span className="serif-italic">cadence.</span></h2>
+            <p className="section-sub">From first call to launch day — predictable milestones, weekly progress, no black boxes.</p>
           </AnimatedSection>
           <StaggerContainer className="process-grid reveal-stagger">
             <StaggerItem><div className="process-step"><div className="process-num">i</div><h4>Discovery</h4><p>Goals, scope, success metrics — captured in a clear written brief.</p></div></StaggerItem>
@@ -410,48 +418,6 @@ export default function HomeSection() {
           </StaggerContainer>
         </div>
       </section>
-
-
-      <section id="portfolio" className="section">
-        <div className="container">
-          <AnimatedSection as="header" className="section-header reveal" variant="fadeUp">
-            <div className="section-eyebrow">Portfolio</div>
-            <h2 className="section-title">Recent <span className="serif-italic">work</span> we&apos;re proud of.</h2>
-            <p className="section-sub">A small sample of products we&apos;ve shipped — each one built end-to-end.</p>
-          </AnimatedSection>
-          <AnimatedSection className="portfolio-filter reveal" variant="fadeIn" delay={0.1}>
-            <button className="filter-btn active" data-cat="all">All Work</button>
-            <button className="filter-btn" data-cat="web">Web</button>
-            <button className="filter-btn" data-cat="mobile">Mobile</button>
-            <button className="filter-btn" data-cat="ai">AI</button>
-            <button className="filter-btn" data-cat="saas">SaaS</button>
-          </AnimatedSection>
-          <StaggerContainer className="portfolio-grid reveal-stagger">
-            <StaggerItem>
-              <Link href="/portfolio/helix" className="portfolio-card featured" data-cats="web,saas">
-                <div className="portfolio-thumb"><div className="mock"><div className="mock-bar blue"></div><div className="mock-bar"></div><div className="mock-bar short"></div><div className="mock-grid"><div className="mock-tile blue"></div><div className="mock-tile"></div><div className="mock-tile"></div><div className="mock-tile"></div><div className="mock-tile blue"></div><div className="mock-tile"></div></div><div className="mock-bar" style={{ marginTop: '14px' }}></div><div className="mock-bar short"></div></div></div>
-                <div className="portfolio-body"><div className="portfolio-tags"><span className="tag">Web</span><span className="tag">SaaS</span><span className="tag">Dashboard</span></div><h3>Helix — analytics platform for ops teams</h3><p>End-to-end dashboard product: data ingestion, query builder, custom reports and team workspaces. Built from scratch in 11 weeks.</p></div>
-              </Link>
-            </StaggerItem>
-            <StaggerItem>
-              <Link href="/portfolio" className="portfolio-card" data-cats="mobile">
-                <div className="portfolio-thumb"><div className="mock" style={{ inset: '30px 60px' }}><div className="mock-bar blue"></div><div className="mock-bar short"></div><div className="mock-tile blue" style={{ aspectRatio: '2.5', marginTop: '10px' }}></div><div className="mock-bar" style={{ marginTop: '10px' }}></div><div className="mock-bar short"></div></div></div>
-                <div className="portfolio-body"><div className="portfolio-tags"><span className="tag">Mobile</span><span className="tag">iOS / Android</span></div><h3>Orbital — habit tracking app</h3><p>React Native app with offline sync, gentle streak mechanics, and a personal insights engine.</p></div>
-              </Link>
-            </StaggerItem>
-            <StaggerItem>
-              <Link href="/portfolio" className="portfolio-card" data-cats="ai,saas">
-                <div className="portfolio-thumb"><div className="mock"><div className="mock-bar short blue"></div><div className="mock-bar"></div><div className="mock-bar"></div><div className="mock-bar short"></div><div className="mock-tile" style={{ aspectRatio: '4', marginTop: '12px', background: 'rgba(59,130,246,0.18)' }}></div><div className="mock-bar short" style={{ marginTop: '8px' }}></div></div></div>
-                <div className="portfolio-body"><div className="portfolio-tags"><span className="tag">AI</span><span className="tag">RAG</span></div><h3>Quill — AI knowledge assistant</h3><p>RAG-powered support bot trained on a client&apos;s docs — handling 64% of tickets without escalation.</p></div>
-              </Link>
-            </StaggerItem>
-          </StaggerContainer>
-          <AnimatedSection variant="fadeIn" delay={0.2} style={{ textAlign: 'center', marginTop: '48px' }}>
-            <Link className="btn btn-ghost btn-lg" href="/portfolio">View all work <span className="arrow">→</span></Link>
-          </AnimatedSection>
-        </div>
-      </section>
-
 
       <section className="section" style={{ paddingTop: '40px' }}>
         <div className="container">

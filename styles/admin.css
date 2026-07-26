@@ -90,6 +90,68 @@
   color: var(--a-text);
 }
 
+/* ── Sidebar nav group (submenu) ── */
+.nx-admin-root .a-nav-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.nx-admin-root .a-nav-parent {
+  color: var(--a-muted);
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: default;
+  font-weight: 500;
+  user-select: none;
+}
+
+.nx-admin-root .a-nav-parent.active {
+  color: var(--a-text);
+}
+
+.nx-admin-root .a-nav-arrow {
+  font-size: 10px;
+  opacity: 0.6;
+  flex-shrink: 0;
+}
+
+.nx-admin-root .a-nav-children {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding-left: 14px;
+}
+
+.nx-admin-root .a-nav-child {
+  color: var(--a-muted);
+  text-decoration: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-left: 2px solid transparent;
+}
+
+.nx-admin-root .a-nav-child:hover {
+  background: rgba(124, 92, 255, 0.08);
+  color: var(--a-text);
+  border-left-color: rgba(124, 92, 255, 0.3);
+}
+
+.nx-admin-root .a-nav-child.active {
+  background: rgba(124, 92, 255, 0.12);
+  color: var(--a-text);
+  border-left-color: var(--a-accent);
+  font-weight: 500;
+}
+
 .nx-admin-root .a-main {
   padding: 28px 32px;
   min-width: 0;
@@ -632,3 +694,473 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* =====================================================
+   TRUSTED COMPANIES ADMIN
+   ===================================================== */
+
+.nx-admin-root .tc-shell {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ── Top bar ────────────────────────────────────────── */
+.nx-admin-root .tc-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.nx-admin-root .tc-topbar-left {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.nx-admin-root .tc-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--a-text);
+  margin: 0;
+}
+
+.nx-admin-root .tc-count {
+  font-size: 12px;
+  color: var(--a-muted);
+}
+
+/* ── Mode bar ───────────────────────────────────────── */
+.nx-admin-root .tc-mode-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  background: var(--a-panel);
+  border: 1px solid var(--a-border);
+  border-radius: 10px;
+  flex-wrap: wrap;
+}
+
+.nx-admin-root .tc-mode-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--a-text);
+}
+
+.nx-admin-root .tc-mode-btns {
+  display: flex;
+  gap: 8px;
+}
+
+.nx-admin-root .tc-mode-btn {
+  padding: 7px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 8px;
+  border: 1.5px solid var(--a-border);
+  background: transparent;
+  color: var(--a-muted);
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.nx-admin-root .tc-mode-btn.active,
+.nx-admin-root .tc-mode-btn:hover {
+  background: var(--a-accent);
+  border-color: var(--a-accent);
+  color: #fff;
+}
+
+.nx-admin-root .tc-saving {
+  font-size: 11px;
+  color: var(--a-muted);
+  font-style: italic;
+  margin-left: auto;
+}
+
+/* ── Table ──────────────────────────────────────────── */
+.nx-admin-root .tc-table-wrap {
+  background: var(--a-panel);
+  border: 1px solid var(--a-border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.nx-admin-root .tc-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.nx-admin-root .tc-table th {
+  padding: 10px 14px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--a-muted);
+  text-align: left;
+  background: rgba(0,0,0,0.03);
+  border-bottom: 1px solid var(--a-border);
+}
+
+.nx-admin-root .tc-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--a-border);
+  vertical-align: middle;
+  font-size: 13px;
+}
+
+.nx-admin-root .tc-row:last-child td {
+  border-bottom: none;
+}
+
+.nx-admin-root .tc-row {
+  transition: background 0.15s;
+  cursor: grab;
+}
+
+.nx-admin-root .tc-row:hover {
+  background: rgba(124,92,255,0.04);
+}
+
+.nx-admin-root .tc-row--over {
+  background: rgba(124,92,255,0.10) !important;
+  outline: 2px dashed var(--a-accent);
+}
+
+.nx-admin-root .tc-row--dragging {
+  opacity: 0.45;
+}
+
+.nx-admin-root .tc-drag-handle {
+  color: var(--a-muted);
+  font-size: 18px;
+  cursor: grab;
+  user-select: none;
+  text-align: center;
+  width: 32px;
+}
+
+.nx-admin-root .tc-logo-thumb {
+  width: 52px;
+  height: 32px;
+  object-fit: contain;
+  border-radius: 4px;
+  border: 1px solid var(--a-border);
+  background: #fff;
+  padding: 2px;
+}
+
+.nx-admin-root .tc-logo-initials {
+  width: 52px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #7c5cff, #5a3df0);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 6px;
+}
+
+.nx-admin-root .tc-name {
+  font-weight: 600;
+  color: var(--a-text);
+}
+
+.nx-admin-root .tc-muted {
+  color: var(--a-muted);
+  font-size: 12px;
+}
+
+.nx-admin-root .tc-link {
+  color: var(--a-accent);
+  text-decoration: none;
+  font-size: 12px;
+}
+
+.nx-admin-root .tc-link:hover {
+  text-decoration: underline;
+}
+
+.nx-admin-root .tc-toggle {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: all 0.18s;
+}
+
+.nx-admin-root .tc-toggle--on {
+  background: rgba(34,197,94,0.15);
+  color: #16a34a;
+}
+
+.nx-admin-root .tc-toggle--on:hover {
+  background: rgba(34,197,94,0.25);
+}
+
+.nx-admin-root .tc-toggle--off {
+  background: rgba(239,68,68,0.1);
+  color: #dc2626;
+}
+
+.nx-admin-root .tc-toggle--off:hover {
+  background: rgba(239,68,68,0.18);
+}
+
+.nx-admin-root .tc-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.nx-admin-root .tc-action-btn {
+  background: none;
+  border: 1px solid var(--a-border);
+  padding: 5px 9px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.15s;
+}
+
+.nx-admin-root .tc-action-btn:hover {
+  background: var(--a-panel-strong);
+  border-color: var(--a-accent);
+}
+
+.nx-admin-root .tc-action-btn--del:hover {
+  border-color: var(--a-danger);
+  background: rgba(239,68,68,0.06);
+}
+
+.nx-admin-root .tc-hint {
+  font-size: 11px;
+  color: var(--a-muted);
+  padding: 8px 14px 12px;
+  margin: 0;
+  text-align: center;
+}
+
+/* ── Empty state ────────────────────────────────────── */
+.nx-admin-root .tc-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 60px 24px;
+  background: var(--a-panel);
+  border: 1px dashed var(--a-border);
+  border-radius: 12px;
+  color: var(--a-muted);
+  text-align: center;
+}
+
+/* ── Modal ──────────────────────────────────────────── */
+.nx-admin-root .tc-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 24px;
+}
+
+.nx-admin-root .tc-modal {
+  background: var(--a-panel-strong);
+  border: 1px solid var(--a-border);
+  border-radius: 16px;
+  width: 100%;
+  max-width: 520px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.25);
+}
+
+.nx-admin-root .tc-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid var(--a-border);
+}
+
+.nx-admin-root .tc-modal-header h3 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--a-text);
+}
+
+.nx-admin-root .tc-modal-close {
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: var(--a-muted);
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: background 0.15s;
+}
+
+.nx-admin-root .tc-modal-close:hover {
+  background: rgba(0,0,0,0.06);
+}
+
+.nx-admin-root .tc-form {
+  padding: 20px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.nx-admin-root .tc-err {
+  padding: 10px 14px;
+  background: rgba(239,68,68,0.08);
+  border: 1px solid rgba(239,68,68,0.25);
+  border-radius: 8px;
+  color: var(--a-danger);
+  font-size: 13px;
+}
+
+.nx-admin-root .tc-form-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.nx-admin-root .a-row {
+  display: flex;
+  gap: 16px;
+  align-items: flex-end;
+}
+
+.nx-admin-root .a-field-check {
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 4px;
+}
+
+.nx-admin-root .a-check-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* ── Preview box ────────────────────────────────────── */
+.nx-admin-root .tc-preview-box {
+  border: 1px solid var(--a-border);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--a-panel);
+}
+
+.nx-admin-root .tc-preview-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--a-border);
+  background: rgba(0,0,0,0.03);
+}
+
+.nx-admin-root .tc-preview-title {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--a-text);
+}
+
+.nx-admin-root .tc-preview-note {
+  font-size: 11px;
+  color: var(--a-muted);
+}
+
+.nx-admin-root .tc-preview-inner {
+  padding: 20px;
+  overflow: hidden;
+}
+
+.nx-admin-root .tc-preview-marquee {
+  display: flex;
+  gap: 0;
+  overflow: hidden;
+  font-size: 13px;
+  font-weight: 500;
+  color: #666;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+}
+
+.nx-admin-root .tc-preview-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 16px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+
+.nx-admin-root .tc-preview-sep {
+  color: #bbb;
+  margin-left: 6px;
+}
+
+.nx-admin-root .tc-preview-logos {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.nx-admin-root .tc-preview-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 16px;
+  border: 1px solid var(--a-border);
+  border-radius: 10px;
+  background: var(--a-panel-strong);
+  min-width: 100px;
+}
+
+.nx-admin-root .tc-preview-logo-img {
+  max-width: 80px;
+  max-height: 36px;
+  object-fit: contain;
+}
+
+.nx-admin-root .tc-preview-initials {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--a-accent);
+}
+
+.nx-admin-root .tc-preview-name {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--a-muted);
+  text-align: center;
+}
+
+.nx-admin-root .tc-preview-empty {
+  color: var(--a-muted);
+  font-size: 13px;
+  font-style: italic;
+}

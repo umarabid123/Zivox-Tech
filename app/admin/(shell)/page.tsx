@@ -27,7 +27,7 @@ export default async function AdminHome() {
 
   const stats = [
     { label: "Blog posts", value: posts },
-    { label: "Portfolio", value: portfolio },
+    { label: "Portfolio items", value: portfolio },
     { label: "Case studies", value: cases },
     { label: "Services", value: services },
     { label: "Testimonials", value: testimonials },
