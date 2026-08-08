@@ -232,9 +232,9 @@ export default function HomeSection({ featuredProjects = [] }: { featuredProject
           <div className="hero-grid hero-grid--two-col">
             {/* LEFT: text content */}
             <StaggerContainer className="hero-text reveal">
-              <StaggerItem>
+              {/* <StaggerItem>
                 <span className="eyebrow"><span className="dot"></span> Design · Build · Launch</span>
-              </StaggerItem>
+              </StaggerItem> */}
               <StaggerItem>
                 <h1>
                   We build software<br />

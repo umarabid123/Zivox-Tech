@@ -189,6 +189,7 @@ export default function ServicesSection() {
       </div>
     </section>
 
+    {/*
     <section className="section" style={{ paddingTop: '40px' }}>
       <div className="container">
         <AnimatedSection as="header" className="section-header center reveal" variant="fadeUp">
@@ -249,6 +250,7 @@ export default function ServicesSection() {
         </p>
       </div>
     </section>
+    */}
 
 
     <section className="section" style={{ paddingTop: '0' }}>

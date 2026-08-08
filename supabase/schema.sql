@@ -208,3 +208,23 @@ drop policy if exists "public delete media" on storage.objects;
 create policy "public delete media" on storage.objects for delete
   using (bucket_id = 'zivox-media');
 
+
+-- ---------- TEAM MEMBERS ----------
+create table if not exists public.team_members (
+  id            uuid primary key default gen_random_uuid(),
+  name          text not null,
+  title         text not null,                -- e.g. Lead Engineer
+  company       text default 'Zivoxtech',      -- e.g. Zivoxtech (department/company name)
+  photo_url     text,                         -- avatar / picture URL
+  bio           text,                         -- short bio
+  linkedin_url  text,                         -- LinkedIn profile URL
+  display_order int not null default 0,
+  is_active     boolean not null default true,
+  created_at    timestamptz not null default now(),
+  updated_at    timestamptz not null default now()
+);
+create index if not exists team_members_sort_idx on public.team_members (display_order asc, created_at desc);
+alter table public.team_members enable row level security;
+drop policy if exists "public read team" on public.team_members;
+create policy "public read team" on public.team_members for select using (is_active = true);
+

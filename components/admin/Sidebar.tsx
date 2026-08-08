@@ -15,6 +15,14 @@ const ITEMS: NavItem[] = [
   { href: "/admin", label: "Dashboard" },
   { href: "/admin/blog", label: "Blog posts" },
   {
+    href: "/admin/team",
+    label: "Team Members",
+    children: [
+      { href: "/admin/team", label: "All Members" },
+      { href: "/admin/team/new", label: "Add Member" },
+    ],
+  },
+  {
     href: "/admin/portfolio",
     label: "Portfolio",
     children: [

@@ -17,12 +17,16 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: false, error: "Email and password required" }, { status: 400 });
   }
 
-  const user = await verifyAdminPassword(email, password);
-  if (!user) {
-    return NextResponse.json({ ok: false, error: "Invalid credentials" }, { status: 401 });
-  }
+  try {
+    const user = await verifyAdminPassword(email, password);
+    if (!user) {
+      return NextResponse.json({ ok: false, error: "Invalid credentials" }, { status: 401 });
+    }
 
-  const token = await signSession(user.email);
-  await setAdminCookie(token);
-  return NextResponse.json({ ok: true });
+    const token = await signSession(user.email);
+    await setAdminCookie(token);
+    return NextResponse.json({ ok: true });
+  } catch (err: any) {
+    return NextResponse.json({ ok: false, error: err.message || "Internal server error" }, { status: 500 });
+  }
 }

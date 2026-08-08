@@ -112,7 +112,7 @@ export default function TrustMarquee({ mode = "marquee", companies = [] }: Props
     >
       <div className="trust-header">
         <span className="trust-eyebrow">
-          {mode === "logos" ? "Trusted by great teams" : "What we stand for"}
+          {mode === "logos" ? "Trusted by great teams" : "Our Philosophy"}
         </span>
       </div>
 

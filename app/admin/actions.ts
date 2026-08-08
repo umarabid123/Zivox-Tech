@@ -426,3 +426,74 @@ export async function updateTrustMode(formData: FormData) {
   revalidatePath("/about");
 }
 
+/* ─── Team Members Actions ───────────────────────────────────────────── */
+
+export async function upsertTeamMember(prevState: any, formData: FormData) {
+  try {
+    await ensureAdmin();
+    const id = formData.get("id") ? String(formData.get("id")) : undefined;
+    const name = String(formData.get("name") || "").trim();
+    const title = String(formData.get("title") || "").trim();
+    const company = String(formData.get("company") || "Zivoxtech").trim();
+    const photo_url = String(formData.get("photo_url") || "").trim() || null;
+    const bio = String(formData.get("bio") || "").trim() || null;
+    const linkedin_url = String(formData.get("linkedin_url") || "").trim() || null;
+    const display_order = toInt(formData.get("display_order"), 0);
+    const is_active = toBool(formData.get("is_active"));
+
+    if (!name || !title) {
+      return { ok: false, error: "Name and Title (Post) are required fields." };
+    }
+
+    const row: any = {
+      name,
+      title,
+      company,
+      photo_url,
+      bio,
+      linkedin_url,
+      display_order,
+      is_active,
+    };
+
+    const sb = supabaseService();
+    if (id) {
+      const { error } = await sb.from("team_members").update(row).eq("id", id);
+      if (error) throw new Error(error.message);
+    } else {
+      const { error } = await sb.from("team_members").insert(row);
+      if (error) throw new Error(error.message);
+    }
+
+    revalidatePath("/admin/team");
+    revalidatePath("/about");
+    revalidatePath("/api/team");
+
+    return { ok: true };
+  } catch (err: any) {
+    return { ok: false, error: err.message || "Failed to save team member." };
+  }
+}
+
+export async function deleteTeamMember(formData: FormData) {
+  await ensureAdmin();
+  const id = String(formData.get("id"));
+  await supabaseService().from("team_members").delete().eq("id", id);
+  revalidatePath("/admin/team");
+  revalidatePath("/about");
+  revalidatePath("/api/team");
+}
+
+export async function toggleTeamMemberActive(formData: FormData) {
+  await ensureAdmin();
+  const id = String(formData.get("id"));
+  const current = formData.get("is_active") === "true";
+  await supabaseService()
+    .from("team_members")
+    .update({ is_active: !current })
+    .eq("id", id);
+  revalidatePath("/admin/team");
+  revalidatePath("/about");
+  revalidatePath("/api/team");
+}
+

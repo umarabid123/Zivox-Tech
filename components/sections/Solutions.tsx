@@ -78,9 +78,10 @@ export default async function SolutionsSection() {
             </p>
           </AnimatedSection>
 
-          <div className="services-grid">
+          <div className="process-grid">
             {[
               {
+                num: "01",
                 icon: (
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M12 20l9-7-9-7-9 7 9 7zM12 4v16" />
@@ -90,6 +91,7 @@ export default async function SolutionsSection() {
                 desc: "We learn your workflow before proposing anything. Bring spreadsheets, screenshots, half-finished projects — all useful.",
               },
               {
+                num: "02",
                 icon: (
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                     <circle cx="12" cy="12" r="9" />
@@ -100,16 +102,31 @@ export default async function SolutionsSection() {
                 desc: "We take a proven shape and bend it to your terminology, roles, and existing tools — not the other way around.",
               },
               {
+                num: "03",
                 icon: (
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                     <polyline points="20 6 9 17 4 12" />
                   </svg>
                 ),
                 title: "You own the code",
-                desc: "Clean, documented codebases delivered on your GitHub. You can hire anyone to extend it — including us.",
+                desc: "Clean, documented code that stays yours. No unnecessary lock-in, no black box.",
+              },
+              {
+                num: "04",
+                icon: (
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="2" y="2" width="20" height="8" rx="2" ry="2" />
+                    <rect x="2" y="14" width="20" height="8" rx="2" ry="2" />
+                    <line x1="6" y1="6" x2="6.01" y2="6" />
+                    <line x1="6" y1="18" x2="6.01" y2="18" />
+                  </svg>
+                ),
+                title: "Test & Deploy",
+                desc: "We rigorously test every integration and deploy to production, ensuring a flawless launch with zero downtime.",
               },
             ].map((item, i) => (
-              <AnimatedSection key={i} className="service-card" variant="fadeUp" delay={i * 0.08}>
+              <AnimatedSection key={i} className="service-card process-card" variant="fadeUp" delay={i * 0.1}>
+                <div className="process-number">{item.num}</div>
                 <div className="service-icon">{item.icon}</div>
                 <h3>{item.title}</h3>
                 <p>{item.desc}</p>
