@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion, useAnimationFrame, useMotionValue, useTransform } from "framer-motion";
+import { motion, useAnimationFrame, useMotionValue, useTransform, MotionValue } from "framer-motion";
 
 export interface StepItem {
   id: string;
@@ -339,17 +339,17 @@ function OrbitNode({
 }: {
   step: StepItem;
   radiusPct: number;
-  angle: ReturnType<typeof useMotionValue>;
+  angle: MotionValue<number>;
   isActive: boolean;
   onSelect: () => void;
 }) {
   // mathematical offset alignment done in coordinate space to avoid transform override bugs
-  const x = useTransform(angle, (deg) => {
+  const x = useTransform(angle, (deg: number) => {
     const rad = (deg * Math.PI) / 180;
     return `calc(50% + ${Math.cos(rad) * radiusPct * 100}% - 20px)`;
   });
 
-  const y = useTransform(angle, (deg) => {
+  const y = useTransform(angle, (deg: number) => {
     const rad = (deg * Math.PI) / 180;
     return `calc(50% + ${Math.sin(rad) * radiusPct * 100}% - 20px)`;
   });

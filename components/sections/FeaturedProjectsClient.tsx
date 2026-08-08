@@ -323,7 +323,7 @@ export default function FeaturedProjectsClient({ projects, compact = false }: Fe
                 x,
                 "--fp-per-page": perPage,
                 "--fp-gap": `${CARD_GAP}px`,
-              } as React.CSSProperties}
+              } as any}
             >
               {trackCards.map((projectIdx, i) => (
                 <div key={`card-${i}-${projectIdx}`} className="fp-slide-card">

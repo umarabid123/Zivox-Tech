@@ -6,6 +6,7 @@ import {
   useAnimationFrame,
   useMotionValue,
   useTransform,
+  MotionValue,
 } from "framer-motion";
 import Image from "next/image";
 
@@ -122,13 +123,13 @@ function OrbitCard({
   angle,
 }: {
   card: (typeof CARDS)[0];
-  angle: ReturnType<typeof useMotionValue>;
+  angle: MotionValue<number>;
 }) {
-  const x = useTransform(angle, (deg) => {
+  const x = useTransform(angle, (deg: number) => {
     const rad = (deg * Math.PI) / 180;
     return `calc(50% + ${Math.cos(rad) * ORBIT_RADIUS_PCT * 100}% - 90px)`;
   });
-  const y = useTransform(angle, (deg) => {
+  const y = useTransform(angle, (deg: number) => {
     const rad = (deg * Math.PI) / 180;
     return `calc(50% + ${Math.sin(rad) * ORBIT_RADIUS_PCT * 100}% - 44px)`;
   });
@@ -150,7 +151,7 @@ function OrbitCard({
 }
 
 /* ─── Live SVG connector lines ──────────────────────────── */
-function OrbitLines({ angles }: { angles: ReturnType<typeof useMotionValue>[] }) {
+function OrbitLines({ angles }: { angles: MotionValue<number>[] }) {
   const [, setTick] = useState(0);
   useAnimationFrame(() => setTick((t) => t + 1));
 

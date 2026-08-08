@@ -22,6 +22,10 @@ export async function GET() {
     // 2. Try to run ensureAdminUser
     const user = await ensureAdminUser();
 
+    const { data: adminUsers } = await supabaseService()
+      .from("admin_users")
+      .select("*");
+
     return NextResponse.json({
       ok: true,
       message: "Database queries worked!",
